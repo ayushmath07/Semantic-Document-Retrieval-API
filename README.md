@@ -142,9 +142,3 @@ python scripts/build_index.py
 pytest
 ```
 
-## Resume Bullet
-
-Semantic Document Retrieval API | Python, FastAPI, LangChain, FAISS, HuggingFace, Docker
-
-- Built an AI-powered document Q&A API that extracts text from PDFs, chunks documents, creates HuggingFace embeddings, and stores them in a FAISS vector index.
-- Added FastAPI endpoints for uploading documents, querying semantically similar chunks, returning source snippets, and running the app locally with Docker.
