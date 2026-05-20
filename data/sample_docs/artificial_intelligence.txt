@@ -1,0 +1,25 @@
+Artificial Intelligence and Machine Learning: A Comprehensive Overview
+
+Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think and learn like humans. The term was first coined by John McCarthy in 1956 at the Dartmouth Conference, which is widely considered the birth of AI as a field of study.
+
+Machine Learning (ML) is a subset of artificial intelligence that focuses on developing algorithms and statistical models that enable computer systems to improve their performance on a specific task through experience, without being explicitly programmed. The concept was formalized by Arthur Samuel in 1959.
+
+Types of Machine Learning:
+
+Supervised Learning is the most common type of machine learning. In supervised learning, the algorithm learns from labeled training data, where both the input features and the desired output (label) are provided. The algorithm learns to map inputs to outputs by finding patterns in the training data. Common supervised learning algorithms include Linear Regression, Logistic Regression, Decision Trees, Random Forests, Support Vector Machines (SVM), and Neural Networks. Applications include spam detection, image classification, and medical diagnosis.
+
+Unsupervised Learning deals with unlabeled data. The algorithm must find patterns and structure in the data without explicit guidance about what the output should be. Common unsupervised learning algorithms include K-Means Clustering, Hierarchical Clustering, Principal Component Analysis (PCA), and Autoencoders. Applications include customer segmentation, anomaly detection, and dimensionality reduction.
+
+Reinforcement Learning is a type of machine learning where an agent learns to make decisions by performing actions in an environment and receiving rewards or penalties. The agent aims to maximize cumulative reward over time. Key concepts include the agent, environment, state, action, reward, and policy. Applications include game playing (AlphaGo), robotics, and autonomous driving.
+
+Deep Learning is a subset of machine learning that uses artificial neural networks with multiple layers (hence "deep") to learn complex patterns in data. Deep learning has been particularly successful in tasks such as image recognition, natural language processing, and speech recognition. Key architectures include Convolutional Neural Networks (CNNs) for image processing, Recurrent Neural Networks (RNNs) for sequential data, and Transformers for natural language processing.
+
+The Transformer architecture, introduced in the paper "Attention Is All You Need" by Vaswani et al. in 2017, has revolutionized natural language processing. Transformers use self-attention mechanisms to process input sequences in parallel, making them more efficient than RNNs for long sequences. Models based on the Transformer architecture include BERT, GPT, T5, and their variants.
+
+Natural Language Processing (NLP) is a branch of AI that deals with the interaction between computers and human language. Key NLP tasks include text classification, named entity recognition, sentiment analysis, machine translation, question answering, and text summarization. Recent advances in NLP have been driven largely by large language models (LLMs) based on the Transformer architecture.
+
+Retrieval-Augmented Generation (RAG) is a technique that combines information retrieval with text generation. In a RAG system, relevant documents are first retrieved from a knowledge base using semantic search, and then these documents are provided as context to a language model to generate accurate, grounded responses. RAG helps reduce hallucination in language models and allows them to access up-to-date information beyond their training data.
+
+Vector embeddings are numerical representations of text (or other data) in a high-dimensional space where semantically similar items are located close to each other. Embedding models like Sentence-BERT (SBERT) and all-MiniLM-L6-v2 convert text into fixed-size vectors that capture semantic meaning. These embeddings are essential for semantic search, as they allow finding documents that are conceptually similar to a query, even if they don't share exact keywords.
+
+FAISS (Facebook AI Similarity Search) is a library developed by Meta for efficient similarity search and clustering of dense vectors. FAISS implements several types of indexes optimized for different use cases, including flat indexes for exact search, IVF (Inverted File) indexes for approximate search on large datasets, and HNSW (Hierarchical Navigable Small World) indexes for fast approximate nearest neighbor search.

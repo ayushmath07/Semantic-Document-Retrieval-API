@@ -1,0 +1,39 @@
+Cloud Computing and AWS: Fundamentals and Architecture
+
+Cloud computing is the delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet ("the cloud") to offer faster innovation, flexible resources, and economies of scale. The three main service models are Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS).
+
+Amazon Web Services (AWS) is the world's most comprehensive and broadly adopted cloud platform, offering over 200 fully featured services from data centers globally. AWS was launched in 2006 and has since become the market leader in cloud computing, followed by Microsoft Azure and Google Cloud Platform.
+
+EC2 (Elastic Compute Cloud):
+Amazon EC2 provides scalable computing capacity in the AWS cloud. EC2 instances are virtual servers that can run applications. Key concepts include instance types (optimized for different workloads like compute, memory, storage, or GPU), Amazon Machine Images (AMIs) for instance templates, security groups for firewall rules, and key pairs for SSH access. Common instance types include t3.micro (free tier eligible), t3.medium (general purpose), and p3 instances (GPU computing for machine learning).
+
+For deploying machine learning applications, EC2 instances with sufficient RAM are preferred over serverless options like AWS Lambda due to model loading requirements. A t3.large instance (2 vCPUs, 8 GB RAM) is typically sufficient for running embedding models and small language models. For larger models, consider r5 or r6i instances optimized for memory-intensive workloads.
+
+Docker and Containerization:
+Docker is a platform for developing, shipping, and running applications in containers. Containers package an application with all its dependencies into a standardized unit, ensuring consistent behavior across different environments. Key Docker concepts include Dockerfiles (build instructions), images (read-only templates), containers (running instances), and Docker Compose (multi-container orchestration).
+
+Best practices for Docker in production include using multi-stage builds to reduce image size, running containers as non-root users for security, using .dockerignore to exclude unnecessary files, leveraging layer caching for faster builds, and implementing health checks for container monitoring.
+
+Networking and Security:
+AWS Virtual Private Cloud (VPC) lets you provision a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define. Security Groups act as virtual firewalls controlling inbound and outbound traffic to EC2 instances. Network Access Control Lists (NACLs) provide an additional layer of security at the subnet level.
+
+For production deployments, always use HTTPS with SSL/TLS certificates (available free through AWS Certificate Manager). Place an Application Load Balancer (ALB) or Nginx reverse proxy in front of your application to handle SSL termination, request buffering, and load distribution.
+
+Storage Services:
+Amazon S3 (Simple Storage Service) provides object storage with industry-leading scalability, data availability, security, and performance. S3 is commonly used for storing static assets, backups, data lakes, and machine learning model artifacts. For ML applications, store large model files and vector indexes in S3 and download them during container startup rather than baking them into Docker images.
+
+Amazon EBS (Elastic Block Store) provides persistent block storage volumes for EC2 instances. When deploying ML applications, ensure your EC2 instance has sufficient EBS storage (at least 20-30 GB) to accommodate Docker images, model caches, and vector indexes.
+
+CI/CD and Automation:
+Continuous Integration and Continuous Deployment (CI/CD) pipelines automate the process of building, testing, and deploying applications. AWS services for CI/CD include CodePipeline (orchestration), CodeBuild (build service), and CodeDeploy (deployment automation). Alternatively, GitHub Actions provides a popular CI/CD solution that integrates directly with GitHub repositories.
+
+A typical CI/CD pipeline for a containerized ML application includes: code push triggers the pipeline, unit tests run, Docker image is built, image is pushed to Amazon ECR (Elastic Container Registry), and the new image is deployed to EC2 instances or ECS clusters.
+
+Monitoring and Observability:
+Amazon CloudWatch provides monitoring and observability for AWS resources and applications. Key features include metrics collection, log aggregation, alarms, and dashboards. For ML applications, monitor both system metrics (CPU, memory, disk) and application-specific metrics (inference latency, retrieval time, model accuracy).
+
+Infrastructure as Code:
+AWS CloudFormation and Terraform allow you to define your infrastructure as code, making deployments repeatable and version-controlled. This includes EC2 instances, security groups, load balancers, S3 buckets, and all other AWS resources needed for your application.
+
+Cost Optimization:
+AWS offers several pricing models including On-Demand (pay per hour), Reserved Instances (1-3 year commitment for significant discounts), Spot Instances (up to 90% discount for interruptible workloads), and Savings Plans. For development and testing, use t3.micro instances (free tier) and shut down resources when not in use.
