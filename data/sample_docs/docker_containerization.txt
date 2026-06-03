@@ -1,0 +1,33 @@
+Docker and Containerization: Building Portable Applications
+
+Docker is an open-source platform that automates the deployment of applications inside lightweight, portable containers. Containers package an application along with all its dependencies, libraries, and configuration files, ensuring consistent behavior across development, testing, and production environments.
+
+Containers vs Virtual Machines
+
+Containers and virtual machines (VMs) both provide isolation for running applications, but they differ fundamentally. VMs run a full operating system on top of a hypervisor, consuming significant resources. Containers share the host OS kernel and run as isolated processes, making them much lighter and faster to start.
+
+A typical VM includes the application, guest OS, binaries, and libraries, consuming gigabytes of disk space and taking minutes to boot. A container includes only the application and its dependencies, consuming megabytes and starting in seconds. This makes containers ideal for microservices architectures where many small services need to run concurrently.
+
+Dockerfile
+
+A Dockerfile is a text file that contains instructions for building a Docker image. Each instruction creates a layer in the image, and Docker caches layers to speed up subsequent builds.
+
+Common Dockerfile instructions include FROM (specifying the base image), WORKDIR (setting the working directory), COPY (copying files from host to container), RUN (executing commands during build), ENV (setting environment variables), EXPOSE (documenting which ports the container listens on), and CMD (specifying the default command to run when the container starts).
+
+Multi-stage builds allow you to use multiple FROM statements in a Dockerfile, each starting a new build stage. This is useful for separating build dependencies from runtime dependencies, resulting in smaller final images. For example, a Python application might use a full Python image for building and a slim image for running.
+
+Docker Compose
+
+Docker Compose is a tool for defining and running multi-container Docker applications. A docker-compose.yml file defines services, networks, and volumes. Each service corresponds to a container with specific configuration including the build context, port mappings, volume mounts, environment variables, and dependencies.
+
+Volumes persist data beyond the lifecycle of a container. Bind mounts map a host directory to a container directory, allowing real-time file synchronization during development. Named volumes are managed by Docker and are useful for persisting database data and other application state.
+
+Best Practices
+
+Docker best practices include using official base images, minimizing the number of layers by combining RUN commands, using .dockerignore to exclude unnecessary files from the build context, running containers as non-root users for security, using environment variables for configuration, and implementing health checks to monitor container status.
+
+Image size optimization involves using slim or alpine base images, removing package manager caches after installation, using multi-stage builds, and only copying necessary files into the final image.
+
+Container Registries
+
+Container registries store and distribute Docker images. Docker Hub is the default public registry. Private registries like Amazon ECR, Google Container Registry, and GitHub Container Registry are used for storing proprietary images. Images are tagged with version identifiers and can be pulled from registries by any Docker host with appropriate credentials.

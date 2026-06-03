@@ -1,4 +1,5 @@
 import os
+import time
 from pathlib import Path
 from typing import Any
 
@@ -13,6 +14,11 @@ BASE_DIR = Path(os.getenv("DATA_DIR", "data"))
 UPLOAD_DIR = BASE_DIR / "uploads"
 INDEX_DIR = BASE_DIR / "faiss_index"
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
+
+# Minimum relevance score (0-1). Results below this threshold are discarded
+# as irrelevant. The score is computed as 1/(1+L2_distance), so 0.30 roughly
+# corresponds to an L2 distance of ~2.33.
+MIN_RELEVANCE_SCORE = float(os.getenv("MIN_RELEVANCE_SCORE", "0.30"))
 
 
 class DocumentStore:
@@ -55,36 +61,56 @@ class DocumentStore:
         self.save()
         return {"filename": file_path.name, "chunks": len(chunks), "characters": len(text)}
 
-    def search(self, query: str, top_k: int = 3) -> list[dict[str, Any]]:
+    def search(self, query: str, top_k: int = 3) -> tuple[list[dict[str, Any]], float]:
+        """Search for relevant chunks and return results with latency in ms."""
         if self.vector_store is None:
-            return []
+            return [], 0.0
 
+        t_start = time.perf_counter()
         matches = self.vector_store.similarity_search_with_score(query, k=top_k)
+        latency_ms = (time.perf_counter() - t_start) * 1000
+
         results = []
         for doc, distance in matches:
+            score = round(1 / (1 + float(distance)), 4)
+            # Filter out results below the minimum relevance threshold
+            if score < MIN_RELEVANCE_SCORE:
+                continue
             results.append(
                 {
                     "source": doc.metadata.get("source", "unknown"),
                     "chunk": doc.metadata.get("chunk", 0),
-                    "score": round(1 / (1 + float(distance)), 4),
+                    "score": score,
                     "text": doc.page_content,
                 }
             )
-        return results
+        return results, round(latency_ms, 2)
 
     def answer(self, query: str, top_k: int = 3) -> dict[str, Any]:
-        results = self.search(query, top_k)
+        results, latency_ms = self.search(query, top_k)
         if not results:
             return {
                 "answer": "I do not have any indexed documents yet. Upload a PDF or text file first.",
                 "sources": [],
+                "retrieval_latency_ms": latency_ms,
             }
 
-        best_lines = [result["text"].strip() for result in results[:2]]
-        answer = " ".join(best_lines)
+        # Build a synthesized answer from the top retrieved chunks.
+        # Each chunk is attributed to its source document.
+        answer_parts: list[str] = []
+        for r in results[:3]:
+            snippet = r["text"].strip()
+            # Take the first ~300 chars of each chunk to keep the answer concise
+            if len(snippet) > 300:
+                snippet = snippet[:300].rsplit(" ", 1)[0] + "..."
+            answer_parts.append(f"[{r['source']}] {snippet}")
+
+        answer_text = "\n\n".join(answer_parts)
+
         return {
-            "answer": answer,
+            "answer": answer_text,
             "sources": results,
+            "retrieval_latency_ms": latency_ms,
         }
 
 

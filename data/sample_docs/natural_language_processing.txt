@@ -1,0 +1,43 @@
+Natural Language Processing: From Text to Understanding
+
+Natural language processing (NLP) is a field at the intersection of computer science, artificial intelligence, and linguistics. NLP focuses on the interaction between computers and humans through natural language, enabling machines to read, understand, and generate human language.
+
+Text Preprocessing
+
+Text preprocessing is a crucial first step in any NLP pipeline. Raw text data is noisy and unstructured, so it must be cleaned and transformed before it can be used by machine learning models. Common preprocessing steps include tokenization, lowercasing, removing stop words, stemming, and lemmatization.
+
+Tokenization is the process of splitting text into individual tokens, which can be words, subwords, or characters. Word-level tokenization splits text on whitespace and punctuation. Subword tokenization methods like Byte Pair Encoding (BPE) and WordPiece break words into smaller units, which helps handle rare words and out-of-vocabulary tokens.
+
+Stop words are common words like "the", "is", and "and" that carry little meaning. Removing them can reduce noise, though modern transformer models often perform better when stop words are retained. Stemming reduces words to their root form by removing suffixes (e.g., "running" becomes "run"), while lemmatization uses vocabulary and morphological analysis to return the base form of a word.
+
+Word Embeddings
+
+Word embeddings are dense vector representations of words that capture semantic meaning. Unlike one-hot encoding, which represents words as sparse vectors, word embeddings place semantically similar words close together in vector space.
+
+Word2Vec, introduced by Google in 2013, learns word embeddings by predicting context words from a target word (Skip-gram) or predicting a target word from context words (CBOW). GloVe (Global Vectors for Word Representation) learns embeddings by factorizing a word co-occurrence matrix. FastText extends Word2Vec by representing each word as a bag of character n-grams, enabling it to generate embeddings for out-of-vocabulary words.
+
+Modern contextual embeddings from models like BERT and GPT produce different embeddings for the same word depending on its context. For example, the word "bank" would have different embeddings in "river bank" and "bank account."
+
+Sentiment Analysis
+
+Sentiment analysis is the task of determining the sentiment or opinion expressed in a piece of text. It is commonly used for analyzing product reviews, social media posts, and customer feedback. Sentiment can be classified as positive, negative, or neutral, or assigned a numerical score on a continuous scale.
+
+Traditional approaches use bag-of-words or TF-IDF features with classifiers like Naive Bayes or SVMs. Modern approaches use pre-trained transformer models like BERT, fine-tuned on sentiment analysis datasets. These models can capture nuanced expressions of sentiment, including sarcasm and implicit opinions.
+
+Named Entity Recognition (NER)
+
+Named entity recognition is the task of identifying and classifying named entities in text into predefined categories such as person names, organizations, locations, dates, and quantities. NER is a fundamental building block for information extraction, question answering, and knowledge graph construction.
+
+Modern NER systems use sequence labeling approaches with BiLSTM-CRF models or fine-tuned transformers. The BIO tagging scheme is commonly used, where B indicates the beginning of an entity, I indicates inside an entity, and O indicates outside any entity.
+
+Text Summarization
+
+Text summarization automatically generates a concise summary of a longer text. Extractive summarization selects important sentences from the original text, while abstractive summarization generates new sentences that capture the key information. Modern abstractive summarization models use encoder-decoder transformer architectures like T5 and BART.
+
+Machine Translation
+
+Machine translation automatically translates text from one language to another. Early approaches used rule-based systems, followed by statistical machine translation using phrase tables and language models. Modern neural machine translation (NMT) uses encoder-decoder architectures with attention mechanisms. The transformer architecture has become the standard for NMT, powering systems like Google Translate.
+
+Retrieval Augmented Generation
+
+Retrieval-Augmented Generation (RAG) is a technique that combines information retrieval with text generation. Instead of relying solely on a language model's parametric knowledge, RAG retrieves relevant documents from an external knowledge base and uses them as context for generation. This approach reduces hallucination, enables access to up-to-date information, and provides traceable sources for generated answers. The RAG pipeline typically involves document chunking, embedding generation, vector similarity search, and prompt augmentation before passing the context to a large language model.

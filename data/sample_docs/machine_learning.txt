@@ -1,0 +1,39 @@
+Machine Learning: Foundations and Applications
+
+Machine learning is a subset of artificial intelligence that focuses on building systems capable of learning from data, identifying patterns, and making decisions with minimal human intervention. Rather than being explicitly programmed with rules, machine learning algorithms use statistical techniques to progressively improve their performance on a specific task.
+
+Supervised Learning
+
+Supervised learning is the most common form of machine learning. In supervised learning, the algorithm is trained on a labeled dataset, meaning that each training example is paired with an output label. The algorithm learns to map inputs to outputs by finding patterns in the training data. Common supervised learning algorithms include linear regression, logistic regression, support vector machines (SVMs), decision trees, random forests, and neural networks.
+
+Linear regression is used for predicting continuous values. It fits a line (or hyperplane in higher dimensions) to the data by minimizing the sum of squared residuals. Logistic regression, despite its name, is used for classification tasks. It uses a sigmoid function to map predicted values to probabilities between 0 and 1.
+
+Decision trees split the data into branches based on feature values, creating a tree-like model of decisions. Random forests are an ensemble of decision trees, where each tree is trained on a random subset of the data and features. The final prediction is the average (regression) or majority vote (classification) of all trees.
+
+Unsupervised Learning
+
+Unsupervised learning algorithms work with data that has no labels. The goal is to find hidden patterns or intrinsic structures in the data. Common unsupervised learning tasks include clustering, dimensionality reduction, and anomaly detection.
+
+K-means clustering is a popular algorithm that partitions data into K clusters. It works by iteratively assigning each data point to the nearest centroid and then updating the centroids based on the new assignments. DBSCAN (Density-Based Spatial Clustering of Applications with Noise) is another clustering algorithm that groups together points that are closely packed and marks points in low-density regions as outliers.
+
+Principal Component Analysis (PCA) is a dimensionality reduction technique that projects data onto a lower-dimensional subspace while preserving as much variance as possible. It is widely used for data visualization and as a preprocessing step to reduce the number of features before training a model.
+
+Model Evaluation
+
+Evaluating a machine learning model is critical for understanding its performance and generalization ability. Common evaluation metrics include accuracy, precision, recall, F1 score, and area under the ROC curve (AUC-ROC).
+
+Accuracy is the proportion of correct predictions out of total predictions. However, accuracy can be misleading for imbalanced datasets. Precision measures the proportion of true positive predictions among all positive predictions, while recall measures the proportion of true positive predictions among all actual positives. The F1 score is the harmonic mean of precision and recall, providing a balanced measure.
+
+Cross-validation is a technique for assessing model performance by splitting the data into multiple folds and training and evaluating the model on different subsets. K-fold cross-validation is the most common approach, where the data is divided into K equal-sized folds, and the model is trained K times, each time using a different fold as the test set and the remaining folds as the training set.
+
+Overfitting and Underfitting
+
+Overfitting occurs when a model learns the training data too well, capturing noise and outliers rather than the underlying pattern. An overfitted model performs well on the training data but poorly on new, unseen data. Regularization techniques like L1 (Lasso) and L2 (Ridge) regularization add a penalty term to the loss function to discourage overly complex models.
+
+Underfitting occurs when a model is too simple to capture the underlying pattern in the data. An underfitted model performs poorly on both training and test data. Underfitting can be addressed by using more complex models, adding more features, or reducing regularization.
+
+Feature Engineering
+
+Feature engineering is the process of using domain knowledge to create new features or transform existing ones to improve model performance. Common techniques include one-hot encoding for categorical variables, normalization and standardization for numerical variables, and creating interaction features by combining two or more existing features.
+
+Feature selection is the process of identifying the most relevant features for a given task. Techniques include filter methods (using statistical tests), wrapper methods (using model performance), and embedded methods (using regularization). Removing irrelevant or redundant features can improve model performance and reduce training time.

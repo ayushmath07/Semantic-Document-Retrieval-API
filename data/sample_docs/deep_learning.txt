@@ -1,0 +1,37 @@
+Deep Learning: Neural Networks and Modern Architectures
+
+Deep learning is a subfield of machine learning that uses artificial neural networks with multiple layers to model complex patterns in data. The term "deep" refers to the number of layers in the network. Deep learning has achieved state-of-the-art results in computer vision, natural language processing, speech recognition, and many other domains.
+
+Neural Network Basics
+
+A neural network consists of layers of interconnected nodes called neurons. Each neuron receives inputs, applies a weighted sum, adds a bias, and passes the result through an activation function. The most common activation functions are ReLU (Rectified Linear Unit), sigmoid, and tanh. ReLU is defined as f(x) = max(0, x) and is the most widely used activation function in modern deep learning because it helps mitigate the vanishing gradient problem.
+
+The training process involves forward propagation (computing the output) and backpropagation (computing gradients and updating weights). The loss function measures the difference between the predicted output and the actual output. Common loss functions include mean squared error for regression and cross-entropy for classification.
+
+Convolutional Neural Networks (CNNs)
+
+CNNs are specialized neural networks designed for processing structured grid data like images. A CNN consists of convolutional layers, pooling layers, and fully connected layers. Convolutional layers apply a set of learnable filters to the input, each filter detecting a specific pattern or feature. Pooling layers reduce the spatial dimensions of the feature maps, typically using max pooling or average pooling.
+
+Famous CNN architectures include LeNet-5 (1998), AlexNet (2012), VGGNet (2014), GoogLeNet/Inception (2014), ResNet (2015), and EfficientNet (2019). ResNet introduced skip connections that allow gradients to flow directly through the network, enabling training of very deep networks with hundreds of layers.
+
+Recurrent Neural Networks (RNNs)
+
+RNNs are designed for sequential data like text, time series, and audio. Unlike feedforward networks, RNNs have connections that form cycles, allowing information to persist across time steps. However, vanilla RNNs suffer from the vanishing gradient problem, making it difficult to learn long-range dependencies.
+
+Long Short-Term Memory (LSTM) networks address this problem by introducing a gating mechanism with forget gates, input gates, and output gates. These gates control the flow of information, allowing the network to selectively remember or forget information over long sequences. Gated Recurrent Units (GRUs) are a simplified variant of LSTMs with fewer parameters.
+
+Transformers
+
+The Transformer architecture, introduced in the paper "Attention Is All You Need" (2017), revolutionized natural language processing and has since been applied to computer vision, audio, and other domains. Transformers rely entirely on self-attention mechanisms, dispensing with recurrence and convolutions.
+
+The self-attention mechanism computes a weighted sum of all positions in the input sequence, where the weights are determined by the similarity between positions. This allows the model to capture long-range dependencies efficiently. Multi-head attention applies multiple attention functions in parallel, each focusing on different aspects of the input.
+
+BERT (Bidirectional Encoder Representations from Transformers) is a pre-trained transformer model that uses masked language modeling and next sentence prediction. GPT (Generative Pre-trained Transformer) is an autoregressive model trained to predict the next token in a sequence. Both models have been fine-tuned for a wide range of downstream tasks.
+
+Transfer Learning
+
+Transfer learning is a technique where a model trained on one task is reused as the starting point for a model on a different task. In deep learning, pre-trained models like ResNet, BERT, and GPT are commonly used as feature extractors or fine-tuned on specific downstream tasks. Transfer learning is particularly useful when labeled data is scarce, as the pre-trained model has already learned general features from a large dataset.
+
+Optimization
+
+Training deep neural networks requires optimization algorithms to minimize the loss function. Stochastic Gradient Descent (SGD) updates the model parameters using the gradient of the loss with respect to the parameters, computed on a mini-batch of training examples. Adam (Adaptive Moment Estimation) combines the benefits of momentum and RMSprop, adapting the learning rate for each parameter based on estimates of the first and second moments of the gradients. Learning rate scheduling, batch normalization, and dropout are common techniques used to stabilize and regularize training.

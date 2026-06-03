@@ -1,0 +1,37 @@
+Data Structures and Algorithms: Fundamentals
+
+Data structures are specialized formats for organizing, storing, and managing data efficiently. The choice of data structure affects the performance of algorithms that operate on the data. Understanding data structures is fundamental to writing efficient software.
+
+Arrays and Linked Lists
+
+An array is a contiguous block of memory that stores elements of the same type. Arrays provide O(1) random access by index but O(n) insertion and deletion in the middle because elements need to be shifted. Dynamic arrays (like Python lists or Java ArrayLists) automatically resize when capacity is exceeded, typically doubling in size to achieve amortized O(1) appends.
+
+A linked list is a sequence of nodes where each node contains data and a pointer to the next node. Singly linked lists allow traversal in one direction, while doubly linked lists allow traversal in both directions. Linked lists provide O(1) insertion and deletion at known positions but O(n) random access since elements must be traversed sequentially.
+
+Stacks and Queues
+
+A stack is a Last-In-First-Out (LIFO) data structure that supports push (add to top) and pop (remove from top) operations in O(1) time. Stacks are used in function call management (call stack), expression evaluation, backtracking algorithms, and undo/redo functionality.
+
+A queue is a First-In-First-Out (FIFO) data structure that supports enqueue (add to rear) and dequeue (remove from front) operations in O(1) time. Queues are used in breadth-first search, task scheduling, and buffer management. A priority queue orders elements by priority and is typically implemented using a binary heap.
+
+Trees
+
+A binary tree is a hierarchical data structure where each node has at most two children. A binary search tree (BST) maintains the property that the left subtree of a node contains only values less than the node, and the right subtree contains only values greater than the node. This property enables O(log n) search, insertion, and deletion in balanced trees.
+
+Self-balancing BSTs like AVL trees and red-black trees automatically maintain balance after insertions and deletions, guaranteeing O(log n) operations in the worst case. AVL trees maintain a balance factor (height difference between left and right subtrees) of at most 1 for every node.
+
+B-trees are balanced search trees designed for disk-based storage systems. Each node can have multiple keys and children, reducing the number of disk accesses needed for search operations. B-trees and their variants (B+ trees) are widely used in database indexing.
+
+Hash Tables
+
+A hash table (or hash map) is a data structure that maps keys to values using a hash function. The hash function converts the key into an index in an array, allowing O(1) average-case lookup, insertion, and deletion. Collisions occur when two keys hash to the same index and can be resolved using chaining (storing multiple entries at the same index in a linked list) or open addressing (probing for the next available slot).
+
+The load factor is the ratio of the number of entries to the number of slots in the hash table. When the load factor exceeds a threshold, the hash table is resized (typically doubled) and all entries are rehashed.
+
+Graphs
+
+A graph is a collection of vertices (nodes) connected by edges. Graphs can be directed or undirected, weighted or unweighted. Graphs are represented using adjacency matrices (O(V^2) space) or adjacency lists (O(V+E) space).
+
+Breadth-first search (BFS) explores all neighbors of a vertex before moving to the next level, using a queue. It finds the shortest path in unweighted graphs. Depth-first search (DFS) explores as far as possible along each branch before backtracking, using a stack or recursion. DFS is used for topological sorting, cycle detection, and finding connected components.
+
+Dijkstra's algorithm finds the shortest path from a single source to all other vertices in a weighted graph with non-negative edge weights. It uses a priority queue and has a time complexity of O((V+E) log V) with a binary heap. Dynamic programming is used for optimization problems where subproblems overlap, such as the knapsack problem, longest common subsequence, and edit distance.

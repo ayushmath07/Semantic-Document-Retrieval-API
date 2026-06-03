@@ -1,0 +1,33 @@
+Cybersecurity: Threats, Defenses, and Best Practices
+
+Cybersecurity is the practice of protecting computer systems, networks, and data from digital attacks, unauthorized access, and damage. As organizations increasingly rely on digital infrastructure, cybersecurity has become critical for protecting sensitive data, maintaining business continuity, and ensuring user trust.
+
+Common Attack Vectors
+
+Phishing is a social engineering attack where attackers send fraudulent emails or messages that appear to come from trusted sources. The goal is to trick victims into revealing sensitive information such as passwords, credit card numbers, or personal data. Spear phishing targets specific individuals or organizations with personalized messages.
+
+Malware is malicious software designed to damage, disrupt, or gain unauthorized access to computer systems. Types of malware include viruses (self-replicating programs that attach to legitimate files), worms (self-propagating malware that spreads across networks), trojans (malware disguised as legitimate software), ransomware (malware that encrypts files and demands payment for decryption), and spyware (malware that secretly monitors user activity).
+
+SQL injection is an attack where malicious SQL code is inserted into input fields of web applications to manipulate the database. For example, entering ' OR '1'='1 as a username can bypass authentication checks. SQL injection can be prevented using parameterized queries, prepared statements, and input validation.
+
+Cross-Site Scripting (XSS) is an attack where malicious scripts are injected into web pages viewed by other users. Stored XSS persists in the server database, while reflected XSS is included in a URL and executed when the victim clicks the link. XSS can be prevented using output encoding, Content Security Policy (CSP), and input sanitization.
+
+Cryptography
+
+Cryptography is the science of securing communication and data through mathematical techniques. Symmetric encryption uses the same key for encryption and decryption. Common symmetric algorithms include AES (Advanced Encryption Standard) and ChaCha20. AES-256 is widely used for encrypting data at rest and in transit.
+
+Asymmetric encryption uses a pair of keys: a public key for encryption and a private key for decryption. RSA and Elliptic Curve Cryptography (ECC) are common asymmetric algorithms. Asymmetric encryption is used for key exchange, digital signatures, and certificate-based authentication.
+
+Hash functions produce a fixed-size output (hash or digest) from variable-size input. Cryptographic hash functions like SHA-256 and bcrypt are used for password storage, data integrity verification, and digital signatures. A good hash function is one-way (cannot be reversed), deterministic, and collision-resistant.
+
+Authentication and Authorization
+
+Authentication verifies the identity of a user, while authorization determines what resources a user can access. Multi-factor authentication (MFA) combines two or more factors: something you know (password), something you have (phone or security key), and something you are (biometrics).
+
+JWT (JSON Web Tokens) are a compact, self-contained way to transmit claims between parties. A JWT consists of a header, payload, and signature. JWTs are commonly used for stateless authentication in web applications, where the server does not need to store session information.
+
+OAuth 2.0 is an authorization framework that allows third-party applications to access user resources without exposing credentials. It uses access tokens and refresh tokens to grant and manage access to protected resources.
+
+Security Best Practices
+
+Defense in depth is a security strategy that employs multiple layers of defense. Key practices include keeping software updated with security patches, using strong unique passwords, encrypting sensitive data at rest and in transit, implementing least-privilege access controls, conducting regular security audits and penetration testing, and maintaining incident response plans.

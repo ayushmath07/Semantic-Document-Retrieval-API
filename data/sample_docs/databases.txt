@@ -1,0 +1,33 @@
+Database Systems: From Relational to NoSQL
+
+A database is an organized collection of structured data stored electronically. Database management systems (DBMS) provide interfaces for defining, creating, querying, updating, and administering databases. The choice of database system significantly impacts application performance, scalability, and data integrity.
+
+Relational Databases
+
+Relational databases store data in tables with rows and columns, following the relational model introduced by Edgar Codd in 1970. Each table represents an entity, and relationships between tables are established through foreign keys. SQL (Structured Query Language) is the standard language for querying and manipulating relational databases.
+
+Common relational database systems include PostgreSQL, MySQL, Oracle Database, Microsoft SQL Server, and SQLite. PostgreSQL is known for its advanced features including JSON support, full-text search, and extensibility. MySQL is widely used in web applications due to its simplicity and performance.
+
+Normalization is the process of organizing data to reduce redundancy and improve data integrity. The main normal forms are First Normal Form (1NF), Second Normal Form (2NF), Third Normal Form (3NF), and Boyce-Codd Normal Form (BCNF). Normalization involves decomposing tables into smaller tables and defining relationships between them.
+
+ACID properties ensure reliable database transactions. Atomicity guarantees that all operations in a transaction are completed or none are. Consistency ensures that a transaction brings the database from one valid state to another. Isolation ensures that concurrent transactions do not interfere with each other. Durability guarantees that committed transactions persist even in the event of system failure.
+
+Indexing
+
+Database indexes are data structures that improve the speed of data retrieval operations. A B-tree index organizes data in a balanced tree structure, allowing efficient searching, insertion, and deletion in O(log n) time. Hash indexes provide O(1) lookup time for exact-match queries. Composite indexes cover multiple columns, and the order of columns in the index matters for query optimization.
+
+The query optimizer uses indexes, statistics, and cost models to determine the most efficient execution plan for a query. Understanding how the query optimizer works is essential for writing performant SQL queries.
+
+NoSQL Databases
+
+NoSQL databases provide flexible schemas and horizontal scalability for handling large volumes of unstructured or semi-structured data. There are four main categories of NoSQL databases.
+
+Document databases like MongoDB store data as JSON-like documents. Each document can have a different structure, making them suitable for applications with evolving schemas. Key-value stores like Redis store data as key-value pairs and are optimized for fast read and write operations. Column-family stores like Apache Cassandra organize data into columns and column families, designed for handling large amounts of data across multiple servers. Graph databases like Neo4j store data as nodes and edges, optimized for traversing relationships between entities.
+
+Vector Databases
+
+Vector databases are a specialized type of database designed for storing and searching high-dimensional vector embeddings. They are critical components of modern AI applications, particularly those involving semantic search and retrieval-augmented generation (RAG). Popular vector databases include FAISS, Pinecone, Weaviate, Qdrant, Milvus, and Chroma.
+
+FAISS (Facebook AI Similarity Search) is an open-source library for efficient similarity search of dense vectors. It supports various index types including IndexFlatL2 (brute-force exact search), IndexIVFFlat (inverted file index for approximate search), and IndexHNSWFlat (hierarchical navigable small world graph). The choice of index type involves a trade-off between search accuracy, speed, and memory usage.
+
+Approximate nearest neighbor (ANN) search algorithms like HNSW, IVF, and product quantization enable sub-linear search times for millions or billions of vectors. These algorithms sacrifice a small amount of accuracy for significant speed improvements.

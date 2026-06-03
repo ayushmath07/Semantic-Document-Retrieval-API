@@ -1,0 +1,33 @@
+Version Control with Git: Branching, Merging, and Collaboration
+
+Git is a distributed version control system that tracks changes in source code during software development. Created by Linus Torvalds in 2005, Git enables multiple developers to work on the same codebase simultaneously without conflicts.
+
+Core Concepts
+
+A Git repository contains the complete history of a project. The working directory holds the current files, the staging area (index) holds changes ready to be committed, and the repository stores the complete history of commits. Each commit is a snapshot of the project at a point in time, identified by a unique SHA-1 hash.
+
+Commits form a directed acyclic graph (DAG) where each commit points to its parent commit(s). This structure enables efficient branching and merging. The HEAD pointer indicates the current commit and branch.
+
+Branching and Merging
+
+Branches are lightweight, movable pointers to commits. Creating a branch is nearly instantaneous because Git only creates a new pointer. The main branch (historically called master, now often called main) is the default branch.
+
+Feature branches allow developers to work on features independently without affecting the main branch. When a feature is complete, it is merged back into the main branch. Merge strategies include fast-forward merge (when the branch has a linear history), three-way merge (when the branch has diverged), and squash merge (combining all branch commits into a single commit).
+
+Merge conflicts occur when two branches modify the same lines in a file. Git marks the conflicting sections, and the developer must manually resolve the conflicts before completing the merge.
+
+Git Workflow Models
+
+GitFlow uses separate branches for development, features, releases, and hotfixes. It provides a structured approach to managing releases and parallel development. The develop branch serves as the integration branch, and feature branches are created from and merged back into develop.
+
+GitHub Flow is a simpler model where developers create branches from main, make changes, open pull requests for code review, and merge into main after approval. This model works well for continuous deployment.
+
+Pull requests (or merge requests) are a collaboration mechanism where developers propose changes, request reviews, and discuss modifications before merging. Code review through pull requests improves code quality, knowledge sharing, and team alignment.
+
+Common Git Operations
+
+Rebasing replays commits from one branch onto another, creating a linear history. Interactive rebasing allows developers to squash, reorder, or edit commits before applying them. While rebasing creates cleaner history, it rewrites commit hashes and should not be used on public branches.
+
+Cherry-picking applies specific commits from one branch to another without merging the entire branch. Stashing temporarily saves uncommitted changes, allowing developers to switch branches without committing incomplete work.
+
+Git hooks are scripts that run automatically at specific points in the Git workflow. Pre-commit hooks can run linters or tests before allowing a commit. Pre-push hooks can run the full test suite before pushing to the remote repository.

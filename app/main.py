@@ -19,8 +19,11 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Semantic Document Retrieval API",
-    description="A simple FastAPI + LangChain + FAISS project for PDF/text semantic search.",
-    version="0.1.0",
+    description=(
+        "AI-powered document search API using LangChain, FAISS, and HuggingFace embeddings. "
+        "Upload PDFs, TXT, or Markdown files and query them with natural language."
+    ),
+    version="0.2.0",
     lifespan=lifespan,
 )
 

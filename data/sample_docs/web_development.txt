@@ -1,0 +1,37 @@
+Web Development: Frontend, Backend, and Full Stack
+
+Web development is the process of building and maintaining websites and web applications. Modern web development encompasses frontend development (user interface), backend development (server-side logic), and full stack development (both frontend and backend).
+
+Frontend Development
+
+Frontend development focuses on what users see and interact with in their browsers. The three core technologies of frontend development are HTML (structure), CSS (styling), and JavaScript (interactivity).
+
+HTML5 introduced semantic elements like header, nav, main, section, article, and footer that improve accessibility and SEO. CSS3 added features like flexbox and grid for responsive layouts, animations and transitions for dynamic effects, and media queries for adapting designs to different screen sizes. Responsive web design ensures that web pages look good on all devices, from desktops to mobile phones.
+
+JavaScript (ES6+) introduced modern features like arrow functions, template literals, destructuring, spread/rest operators, promises, async/await, and modules. These features make JavaScript code more concise and readable.
+
+Frontend frameworks and libraries like React, Vue, and Angular provide component-based architectures for building complex user interfaces. React uses a virtual DOM and one-way data flow. Vue provides a progressive framework that can be adopted incrementally. Angular is a comprehensive framework that includes routing, forms, and dependency injection.
+
+Backend Development
+
+Backend development handles server-side logic, database interactions, authentication, and API design. Popular backend frameworks include Spring Boot (Java), FastAPI (Python), Express (Node.js), Django (Python), and Ruby on Rails (Ruby).
+
+FastAPI is a modern Python web framework built on top of Starlette and Pydantic. It supports automatic OpenAPI documentation generation, request validation using Python type hints, asynchronous request handling, and dependency injection. FastAPI is known for its high performance, approaching that of Node.js and Go frameworks.
+
+Spring Boot is a Java framework that simplifies the creation of production-ready applications. It provides auto-configuration, embedded servers, and a wide range of starter dependencies. Spring Boot supports features like dependency injection, aspect-oriented programming, and integration with databases through Spring Data JPA.
+
+REST API Design
+
+RESTful API design follows principles for building scalable and maintainable web services. Resources are identified by URLs, and operations on resources correspond to HTTP methods (GET, POST, PUT, DELETE). Best practices include using nouns for resource names, versioning the API, implementing pagination for large collections, returning appropriate HTTP status codes, and providing clear error messages.
+
+API documentation is essential for developer experience. Tools like Swagger/OpenAPI generate interactive API documentation from code annotations or specification files.
+
+Authentication and Security
+
+JWT (JSON Web Tokens) authentication is commonly used in web applications. The server generates a token containing user claims (like user ID and role) signed with a secret key. The client includes this token in the Authorization header of subsequent requests. The server validates the token without needing to maintain session state.
+
+Password security involves hashing passwords using algorithms like bcrypt before storing them in the database. Bcrypt includes a salt (random data) that protects against rainbow table attacks and a configurable work factor that makes brute-force attacks computationally expensive.
+
+Databases
+
+Web applications commonly use relational databases (PostgreSQL, MySQL) for structured data and NoSQL databases (MongoDB, Redis) for flexible schemas or caching. Object-Relational Mapping (ORM) libraries like SQLAlchemy (Python), Hibernate (Java), and Prisma (JavaScript) provide abstractions for database operations, allowing developers to work with database entities as objects.

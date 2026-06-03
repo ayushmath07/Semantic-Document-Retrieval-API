@@ -1,0 +1,31 @@
+DevOps: Continuous Integration, Deployment, and Infrastructure
+
+DevOps is a set of practices that combines software development (Dev) and IT operations (Ops) to shorten the development lifecycle and deliver high-quality software continuously. DevOps emphasizes automation, collaboration, monitoring, and rapid feedback loops.
+
+Continuous Integration (CI)
+
+Continuous Integration is the practice of frequently merging code changes into a shared repository, followed by automated building and testing. CI catches integration issues early, reduces the risk of large merge conflicts, and ensures that the codebase is always in a buildable state.
+
+CI pipelines typically include steps for code compilation, unit testing, linting, static analysis, and code coverage reporting. Popular CI tools include GitHub Actions, Jenkins, GitLab CI/CD, CircleCI, and Travis CI. GitHub Actions uses YAML workflow files stored in the .github/workflows directory to define CI pipelines triggered by events like pushes and pull requests.
+
+Continuous Deployment (CD)
+
+Continuous Deployment extends CI by automatically deploying code changes to production after they pass all tests. Continuous Delivery is a related practice where changes are automatically prepared for release but require manual approval before deployment. Blue-green deployments and canary releases are strategies for reducing deployment risk.
+
+Containerization
+
+Docker is a platform for building, shipping, and running applications in containers. A container is a lightweight, standalone, executable package that includes everything needed to run an application: code, runtime, system tools, libraries, and settings. Containers are isolated from each other and from the host system, ensuring consistency across development, testing, and production environments.
+
+A Dockerfile defines the steps to build a container image. Common instructions include FROM (base image), COPY (copy files), RUN (execute commands), EXPOSE (declare ports), and CMD (default command). Docker Compose is a tool for defining and running multi-container applications using a YAML configuration file.
+
+Container Orchestration
+
+Kubernetes (K8s) is an open-source platform for automating the deployment, scaling, and management of containerized applications. Kubernetes organizes containers into pods (the smallest deployable units), which run on nodes (worker machines). Key Kubernetes concepts include deployments (managing replicated pods), services (exposing pods to the network), configmaps (managing configuration), and persistent volumes (managing storage).
+
+Infrastructure as Code
+
+Infrastructure as Code (IaC) is the practice of managing and provisioning infrastructure through machine-readable configuration files rather than manual processes. Tools like Terraform, AWS CloudFormation, and Ansible allow teams to define infrastructure in code, version it alongside application code, and apply changes consistently and repeatably.
+
+Monitoring and Observability
+
+Monitoring and observability are essential for understanding the health and performance of production systems. The three pillars of observability are metrics (numerical measurements like CPU usage and request latency), logs (structured records of events), and traces (end-to-end tracking of requests through distributed systems). Popular tools include Prometheus and Grafana for metrics, ELK Stack (Elasticsearch, Logstash, Kibana) for logs, and Jaeger for distributed tracing.

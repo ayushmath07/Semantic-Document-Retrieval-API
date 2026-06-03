@@ -1,0 +1,617 @@
+{
+  "metrics": {
+    "precision@3": 0.5667,
+    "recall@3": 1.0,
+    "mrr": 0.9167,
+    "latency_p50_ms": 15.85,
+    "latency_p95_ms": 18.23,
+    "latency_mean_ms": 16.34,
+    "total_queries": 40,
+    "queries_with_results": 40
+  },
+  "per_query": [
+    {
+      "query": "What is supervised learning?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 45.83,
+      "retrieved": [
+        "machine_learning.txt",
+        "machine_learning.txt",
+        "artificial_intelligence.txt"
+      ],
+      "expected": [
+        "machine_learning.txt"
+      ]
+    },
+    {
+      "query": "Explain the difference between overfitting and underfitting",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 17.67,
+      "retrieved": [
+        "machine_learning.txt",
+        "machine_learning.txt",
+        "deep_learning.txt"
+      ],
+      "expected": [
+        "machine_learning.txt"
+      ]
+    },
+    {
+      "query": "What is K-means clustering?",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.49,
+      "retrieved": [
+        "machine_learning.txt",
+        "artificial_intelligence.txt",
+        "devops.txt"
+      ],
+      "expected": [
+        "machine_learning.txt"
+      ]
+    },
+    {
+      "query": "How does cross-validation work?",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 13.98,
+      "retrieved": [
+        "machine_learning.txt",
+        "cybersecurity.txt",
+        "machine_learning.txt"
+      ],
+      "expected": [
+        "machine_learning.txt"
+      ]
+    },
+    {
+      "query": "What are convolutional neural networks used for?",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 12.68,
+      "retrieved": [
+        "deep_learning.txt",
+        "artificial_intelligence.txt",
+        "deep_learning.txt"
+      ],
+      "expected": [
+        "deep_learning.txt"
+      ]
+    },
+    {
+      "query": "Explain the transformer architecture",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 0.333,
+      "latency_ms": 13.01,
+      "retrieved": [
+        "artificial_intelligence.txt",
+        "computer_networks.txt",
+        "deep_learning.txt"
+      ],
+      "expected": [
+        "deep_learning.txt"
+      ]
+    },
+    {
+      "query": "What is the vanishing gradient problem?",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.99,
+      "retrieved": [
+        "deep_learning.txt",
+        "deep_learning.txt",
+        "machine_learning.txt"
+      ],
+      "expected": [
+        "deep_learning.txt"
+      ]
+    },
+    {
+      "query": "What is transfer learning?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 11.88,
+      "retrieved": [
+        "deep_learning.txt",
+        "deep_learning.txt",
+        "deep_learning.txt"
+      ],
+      "expected": [
+        "deep_learning.txt"
+      ]
+    },
+    {
+      "query": "How does tokenization work in NLP?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.72,
+      "retrieved": [
+        "natural_language_processing.txt",
+        "natural_language_processing.txt",
+        "artificial_intelligence.txt"
+      ],
+      "expected": [
+        "natural_language_processing.txt"
+      ]
+    },
+    {
+      "query": "What is retrieval augmented generation?",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 0.5,
+      "latency_ms": 12.69,
+      "retrieved": [
+        "artificial_intelligence.txt",
+        "natural_language_processing.txt",
+        "deep_learning.txt"
+      ],
+      "expected": [
+        "natural_language_processing.txt"
+      ]
+    },
+    {
+      "query": "Explain word embeddings and Word2Vec",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 16.07,
+      "retrieved": [
+        "natural_language_processing.txt",
+        "artificial_intelligence.txt",
+        "natural_language_processing.txt"
+      ],
+      "expected": [
+        "natural_language_processing.txt"
+      ]
+    },
+    {
+      "query": "What is sentiment analysis?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.92,
+      "retrieved": [
+        "natural_language_processing.txt",
+        "natural_language_processing.txt",
+        "machine_learning.txt"
+      ],
+      "expected": [
+        "natural_language_processing.txt"
+      ]
+    },
+    {
+      "query": "Explain ACID properties in databases",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.41,
+      "retrieved": [
+        "databases.txt",
+        "databases.txt",
+        "databases.txt"
+      ],
+      "expected": [
+        "databases.txt"
+      ]
+    },
+    {
+      "query": "What is a vector database?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 0.5,
+      "latency_ms": 14.81,
+      "retrieved": [
+        "software_engineering.txt",
+        "databases.txt",
+        "databases.txt"
+      ],
+      "expected": [
+        "databases.txt"
+      ]
+    },
+    {
+      "query": "Explain database normalization",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 13.27,
+      "retrieved": [
+        "databases.txt",
+        "databases.txt",
+        "databases.txt"
+      ],
+      "expected": [
+        "databases.txt"
+      ]
+    },
+    {
+      "query": "What is the OSI model?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 18.06,
+      "retrieved": [
+        "computer_networks.txt",
+        "operating_systems.txt",
+        "computer_networks.txt"
+      ],
+      "expected": [
+        "computer_networks.txt"
+      ]
+    },
+    {
+      "query": "How does TCP differ from UDP?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 16.5,
+      "retrieved": [
+        "computer_networks.txt",
+        "computer_networks.txt",
+        "data_structures.txt"
+      ],
+      "expected": [
+        "computer_networks.txt"
+      ]
+    },
+    {
+      "query": "What is a REST API?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 17.8,
+      "retrieved": [
+        "web_development.txt",
+        "software_engineering.txt",
+        "computer_networks.txt"
+      ],
+      "expected": [
+        "web_development.txt",
+        "computer_networks.txt"
+      ]
+    },
+    {
+      "query": "Explain process scheduling algorithms",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 13.6,
+      "retrieved": [
+        "operating_systems.txt",
+        "operating_systems.txt",
+        "operating_systems.txt"
+      ],
+      "expected": [
+        "operating_systems.txt"
+      ]
+    },
+    {
+      "query": "What is a deadlock?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 12.15,
+      "retrieved": [
+        "operating_systems.txt",
+        "operating_systems.txt",
+        "operating_systems.txt"
+      ],
+      "expected": [
+        "operating_systems.txt"
+      ]
+    },
+    {
+      "query": "How does virtual memory work?",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.1,
+      "retrieved": [
+        "operating_systems.txt",
+        "operating_systems.txt",
+        "docker_containerization.txt"
+      ],
+      "expected": [
+        "operating_systems.txt"
+      ]
+    },
+    {
+      "query": "What is the time complexity of binary search trees?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 16.52,
+      "retrieved": [
+        "data_structures.txt",
+        "data_structures.txt",
+        "databases.txt"
+      ],
+      "expected": [
+        "data_structures.txt"
+      ]
+    },
+    {
+      "query": "Explain hash table collision resolution",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.9,
+      "retrieved": [
+        "data_structures.txt",
+        "data_structures.txt",
+        "databases.txt"
+      ],
+      "expected": [
+        "data_structures.txt"
+      ]
+    },
+    {
+      "query": "What is breadth-first search?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.88,
+      "retrieved": [
+        "data_structures.txt",
+        "data_structures.txt",
+        "databases.txt"
+      ],
+      "expected": [
+        "data_structures.txt"
+      ]
+    },
+    {
+      "query": "What is SQL injection?",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 14.79,
+      "retrieved": [
+        "cybersecurity.txt",
+        "databases.txt",
+        "databases.txt"
+      ],
+      "expected": [
+        "cybersecurity.txt"
+      ]
+    },
+    {
+      "query": "How does JWT authentication work?",
+      "precision": 1.0,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.15,
+      "retrieved": [
+        "cybersecurity.txt",
+        "web_development.txt",
+        "cybersecurity.txt"
+      ],
+      "expected": [
+        "web_development.txt",
+        "cybersecurity.txt"
+      ]
+    },
+    {
+      "query": "Explain symmetric and asymmetric encryption",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 14.71,
+      "retrieved": [
+        "cybersecurity.txt",
+        "cybersecurity.txt",
+        "computer_networks.txt"
+      ],
+      "expected": [
+        "cybersecurity.txt"
+      ]
+    },
+    {
+      "query": "What is continuous integration?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 17.28,
+      "retrieved": [
+        "devops.txt",
+        "devops.txt",
+        "cloud_computing.txt"
+      ],
+      "expected": [
+        "devops.txt"
+      ]
+    },
+    {
+      "query": "Explain Docker containers vs virtual machines",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 17.57,
+      "retrieved": [
+        "docker_containerization.txt",
+        "docker_containerization.txt",
+        "devops.txt"
+      ],
+      "expected": [
+        "docker_containerization.txt"
+      ]
+    },
+    {
+      "query": "What is a Dockerfile?",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 0.333,
+      "latency_ms": 17.62,
+      "retrieved": [
+        "devops.txt",
+        "cloud_computing.txt",
+        "docker_containerization.txt"
+      ],
+      "expected": [
+        "docker_containerization.txt"
+      ]
+    },
+    {
+      "query": "How does Docker Compose work?",
+      "precision": 1.0,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 16.91,
+      "retrieved": [
+        "docker_containerization.txt",
+        "devops.txt",
+        "docker_containerization.txt"
+      ],
+      "expected": [
+        "devops.txt",
+        "docker_containerization.txt"
+      ]
+    },
+    {
+      "query": "What is Kubernetes?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.88,
+      "retrieved": [
+        "devops.txt",
+        "devops.txt",
+        "cloud_computing.txt"
+      ],
+      "expected": [
+        "devops.txt"
+      ]
+    },
+    {
+      "query": "Explain horizontal vs vertical scaling",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 17.18,
+      "retrieved": [
+        "system_design.txt",
+        "data_structures.txt",
+        "databases.txt"
+      ],
+      "expected": [
+        "system_design.txt"
+      ]
+    },
+    {
+      "query": "What is caching and how does Redis work?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.33,
+      "retrieved": [
+        "system_design.txt",
+        "system_design.txt",
+        "software_engineering.txt"
+      ],
+      "expected": [
+        "system_design.txt"
+      ]
+    },
+    {
+      "query": "Explain microservices architecture",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 0.5,
+      "latency_ms": 15.15,
+      "retrieved": [
+        "software_engineering.txt",
+        "system_design.txt",
+        "system_design.txt"
+      ],
+      "expected": [
+        "system_design.txt"
+      ]
+    },
+    {
+      "query": "What is FastAPI and why is it used?",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 0.5,
+      "latency_ms": 18.23,
+      "retrieved": [
+        "python_programming.txt",
+        "web_development.txt",
+        "python_programming.txt"
+      ],
+      "expected": [
+        "web_development.txt"
+      ]
+    },
+    {
+      "query": "How does Git branching work?",
+      "precision": 0.667,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 17.19,
+      "retrieved": [
+        "git_version_control.txt",
+        "git_version_control.txt",
+        "software_engineering.txt"
+      ],
+      "expected": [
+        "git_version_control.txt"
+      ]
+    },
+    {
+      "query": "What is a pull request?",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.81,
+      "retrieved": [
+        "git_version_control.txt",
+        "git_version_control.txt",
+        "devops.txt"
+      ],
+      "expected": [
+        "git_version_control.txt"
+      ]
+    },
+    {
+      "query": "Explain the difference between rebasing and merging",
+      "precision": 1.0,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 15.01,
+      "retrieved": [
+        "git_version_control.txt",
+        "git_version_control.txt",
+        "git_version_control.txt"
+      ],
+      "expected": [
+        "git_version_control.txt"
+      ]
+    },
+    {
+      "query": "What is rate limiting in system design?",
+      "precision": 0.333,
+      "recall": 1.0,
+      "rr": 1.0,
+      "latency_ms": 17.68,
+      "retrieved": [
+        "system_design.txt",
+        "system_design.txt",
+        "operating_systems.txt"
+      ],
+      "expected": [
+        "system_design.txt"
+      ]
+    }
+  ]
+}

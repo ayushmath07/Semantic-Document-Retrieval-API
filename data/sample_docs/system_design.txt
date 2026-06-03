@@ -1,0 +1,41 @@
+System Design: Principles for Scalable Applications
+
+System design is the process of defining the architecture, components, modules, interfaces, and data flow of a system to satisfy specified requirements. System design interviews evaluate a candidate's ability to build large-scale, distributed systems that handle millions of users.
+
+Scalability
+
+Scalability is the ability of a system to handle increasing workloads by adding resources. Vertical scaling (scaling up) involves adding more power (CPU, RAM, storage) to an existing server. Horizontal scaling (scaling out) involves adding more servers to distribute the workload. Horizontal scaling is generally preferred for large-scale systems because it avoids the hardware limitations of a single machine.
+
+Load balancers distribute incoming traffic across multiple servers to ensure no single server is overwhelmed. Common load balancing algorithms include round-robin, least connections, weighted round-robin, and IP hash. Popular load balancers include Nginx, HAProxy, and AWS Elastic Load Balancing.
+
+Caching
+
+Caching stores frequently accessed data in fast storage (like memory) to reduce latency and database load. Cache strategies include cache-aside (application checks cache first, then database), write-through (write to cache and database simultaneously), write-behind (write to cache, then asynchronously to database), and refresh-ahead (proactively refresh cache before expiration).
+
+Redis is an in-memory data store commonly used for caching, session management, and real-time analytics. It supports data structures like strings, hashes, lists, sets, and sorted sets. Redis can be configured with eviction policies like LRU (Least Recently Used) and TTL (Time To Live) to manage memory.
+
+Content Delivery Networks (CDNs) cache static content (images, CSS, JavaScript) at edge locations close to users, reducing latency and server load.
+
+Database Design
+
+Database sharding partitions data across multiple database servers. Horizontal sharding distributes rows across shards based on a shard key, while vertical sharding distributes columns across different databases. Sharding improves scalability but introduces complexity in cross-shard queries and data consistency.
+
+Database replication creates copies of data across multiple servers. Master-slave replication uses a single master for writes and multiple slaves for reads. Master-master replication allows writes on multiple nodes but requires conflict resolution.
+
+Message Queues
+
+Message queues enable asynchronous communication between services in distributed systems. Producers send messages to a queue, and consumers process messages from the queue. This decouples services, improves reliability, and enables load leveling. Popular message queue systems include RabbitMQ, Apache Kafka, and Amazon SQS.
+
+Apache Kafka is a distributed event streaming platform that supports high-throughput, fault-tolerant, real-time data pipelines. Kafka organizes messages into topics, which are partitioned and replicated across brokers for scalability and durability.
+
+Microservices Architecture
+
+Microservices architecture decomposes an application into small, independent services that communicate over network protocols (usually HTTP or gRPC). Each service is responsible for a specific business capability, can be developed and deployed independently, and can use different technologies and databases.
+
+Microservices offer benefits like independent deployment, technology diversity, and fault isolation. However, they introduce challenges like service discovery, distributed tracing, data consistency across services, and increased operational complexity.
+
+API Gateway
+
+An API gateway is a single entry point for all client requests to a microservices backend. It handles cross-cutting concerns like authentication, rate limiting, load balancing, request routing, and response caching. Popular API gateways include Kong, AWS API Gateway, and Nginx.
+
+Rate limiting controls the number of requests a client can make in a given time period. Common algorithms include token bucket, leaky bucket, fixed window counter, and sliding window log. Rate limiting protects services from abuse and ensures fair resource usage.

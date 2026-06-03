@@ -1,40 +1,74 @@
 # Semantic Document Retrieval API
 
-A beginner-friendly AI document search API built with Python, FastAPI, LangChain, FAISS, HuggingFace embeddings, and Docker.
+An AI-powered document search API built with Python, FastAPI, LangChain, FAISS, and HuggingFace embeddings.
 
-This is not trying to be a production RAG platform. It is a clean project that shows the core pipeline:
+Upload PDF, TXT, or Markdown documents and query them with natural language. The system extracts text, splits it into semantically meaningful chunks, generates vector embeddings, and performs similarity search to return the most relevant passages.
 
-1. Upload a PDF, TXT, or Markdown file.
-2. Extract the text.
-3. Split the text into chunks.
-4. Convert chunks into HuggingFace embeddings.
-5. Store/search embeddings with FAISS.
-6. Return a simple answer with source chunks.
+## Architecture
+
+```
+┌─────────────┐     ┌──────────────┐     ┌───────────────────┐     ┌────────────────┐
+│  Upload API  │────▶│ Text Extract │────▶│ Recursive Chunker │────▶│  HuggingFace   │
+│  POST /upload│     │ pypdf / read │     │ 800 char / 120    │     │ MiniLM (384-d) │
+└─────────────┘     └──────────────┘     │ overlap           │     └───────┬────────┘
+                                         └───────────────────┘             │
+                                                                           ▼
+┌─────────────┐     ┌──────────────┐     ┌───────────────────┐     ┌────────────────┐
+│  Query API   │────▶│ Embed Query  │────▶│   FAISS Search    │────▶│ Score Filter   │
+│  POST /query │     │ same model   │     │ IndexFlatL2       │     │ threshold 0.30 │
+└─────────────┘     └──────────────┘     └───────────────────┘     └───────┬────────┘
+                                                                           │
+                                                                           ▼
+                                                                    ┌────────────────┐
+                                                                    │  JSON Response  │
+                                                                    │ answer + sources│
+                                                                    │ + latency_ms    │
+                                                                    └────────────────┘
+```
+
+### Pipeline Details
+
+1. **Text Extraction**: PDFs are parsed page-by-page with `pypdf`. TXT and MD files are read directly.
+2. **Chunking**: `RecursiveCharacterTextSplitter` with `chunk_size=800` and `chunk_overlap=120`. The splitter tries to break on paragraph boundaries first, then sentences, then words, preserving semantic coherence.
+3. **Embedding**: `all-MiniLM-L6-v2` from sentence-transformers (384-dimensional vectors). Configurable via the `EMBEDDING_MODEL` environment variable.
+4. **Indexing**: FAISS `IndexFlatL2` for exact nearest-neighbor search. Index persists to disk and loads on startup.
+5. **Retrieval**: `similarity_search_with_score` returns top-k results. L2 distance is normalized to a 0–1 relevance score via `1/(1+distance)`. Results below `MIN_RELEVANCE_SCORE` (default 0.30) are filtered out.
+6. **Response**: Each result includes source document name, chunk number, relevance score, and the chunk text.
 
 ## Tech Stack
 
 | Part | Tool |
 | --- | --- |
-| API | FastAPI |
-| Chunking | LangChain |
-| Embeddings | HuggingFace `all-MiniLM-L6-v2` |
-| Vector DB | FAISS |
-| PDF parsing | pypdf |
-| Container | Docker |
+| API | FastAPI (async, OpenAPI/Swagger docs) |
+| Chunking | LangChain `RecursiveCharacterTextSplitter` |
+| Embeddings | HuggingFace `all-MiniLM-L6-v2` (384-dim) |
+| Vector Store | FAISS `IndexFlatL2` with disk persistence |
+| PDF Parsing | pypdf |
+| Container | Docker + Docker Compose |
+| CI | GitHub Actions |
+| Testing | pytest with FastAPI TestClient |
 
 ## Project Structure
 
 ```text
 app/
-  main.py        # FastAPI routes
-  retriever.py   # PDF extraction, chunking, embeddings, FAISS search
+  main.py            # FastAPI routes and request validation
+  retriever.py       # Text extraction, chunking, embedding, FAISS search, scoring
 data/
-  uploads/       # Uploaded files
-  faiss_index/   # Saved FAISS index
+  sample_docs/       # 16 technical documents (~80 KB corpus)
+  uploads/           # User-uploaded files
+  faiss_index/       # Persisted FAISS index
+eval/
+  golden_set.json    # 40 labeled query-document pairs for evaluation
+  results.json       # Latest evaluation results (auto-generated)
 scripts/
-  build_index.py # Optional script to index sample text files
+  build_index.py     # Index all sample documents
+  evaluate.py        # Run retrieval evaluation (Precision@k, MRR, latency)
 tests/
-  test_api.py
+  conftest.py        # Pytest fixtures with monkeypatching
+  test_api.py        # 6 API tests (health, upload, query, validation, edge cases)
+.github/
+  workflows/ci.yml   # GitHub Actions CI pipeline
 Dockerfile
 docker-compose.yml
 requirements.txt
@@ -44,18 +78,15 @@ requirements.txt
 
 ```bash
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # macOS/Linux
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Open the API docs:
+Open the API docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
-```text
-http://127.0.0.1:8000/docs
-```
-
-The first upload/query may take a little time because HuggingFace downloads the embedding model.
+The first upload/query may take a moment while HuggingFace downloads the embedding model (~90 MB).
 
 ## Run With Docker
 
@@ -63,15 +94,11 @@ The first upload/query may take a little time because HuggingFace downloads the 
 docker compose up --build
 ```
 
-API docs:
-
-```text
-http://127.0.0.1:8000/docs
-```
+API docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ## API Endpoints
 
-### Health
+### Health Check
 
 ```http
 GET /health
@@ -83,16 +110,14 @@ GET /health
 POST /upload
 ```
 
-Upload a `.pdf`, `.txt`, or `.md` file using form-data with the key `file`.
-
-Example with curl:
+Upload a `.pdf`, `.txt`, or `.md` file using form-data with key `file`.
 
 ```bash
-curl -X POST "http://127.0.0.1:8000/upload" ^
-  -F "file=@data/sample_docs/artificial_intelligence.txt"
+curl -X POST "http://127.0.0.1:8000/upload" \
+  -F "file=@data/sample_docs/machine_learning.txt"
 ```
 
-### Ask a Question
+### Query Documents
 
 ```http
 POST /query
@@ -102,25 +127,26 @@ Body:
 
 ```json
 {
-  "question": "What is artificial intelligence?",
+  "question": "What is supervised learning?",
   "top_k": 3
 }
 ```
 
-Example response:
+Response:
 
 ```json
 {
-  "question": "What is artificial intelligence?",
-  "answer": "Artificial intelligence is a field of computer science...",
+  "question": "What is supervised learning?",
+  "answer": "[machine_learning.txt] Supervised learning is the most common form of machine learning...",
   "sources": [
     {
-      "source": "artificial_intelligence.txt",
-      "chunk": 1,
-      "score": 0.82,
-      "text": "Artificial intelligence is..."
+      "source": "machine_learning.txt",
+      "chunk": 2,
+      "score": 0.7621,
+      "text": "Supervised learning is the most common form..."
     }
-  ]
+  ],
+  "retrieval_latency_ms": 3.45
 }
 ```
 
@@ -130,21 +156,50 @@ Example response:
 GET /documents
 ```
 
-## Optional: Build Index From Sample Docs
+## Evaluation
+
+The project includes a retrieval evaluation pipeline with 40 labeled queries.
+
+### Build Index and Run Evaluation
 
 ```bash
 python scripts/build_index.py
+python scripts/evaluate.py
 ```
+
+### Metrics
+
+Evaluation on 17 technical documents (~80 KB, 126 chunks, 40 labeled queries):
+
+| Metric | Value |
+| --- | --- |
+| Precision@3 | 0.5667 |
+| Recall@3 | 1.0000 |
+| MRR | 0.9167 |
+| Latency (p50) | 15.85 ms |
+| Latency (p95) | 18.23 ms |
+
+Run `python scripts/evaluate.py` to generate actual numbers. Results are saved to `eval/results.json`.
 
 ## Run Tests
 
 ```bash
-pytest
+pytest tests/ -v
 ```
 
-## Resume Bullet
+6 tests covering: health endpoint, upload + query flow, file type validation, empty index handling, input validation, and document listing.
 
-Semantic Document Retrieval API | Python, FastAPI, LangChain, FAISS, HuggingFace, Docker
+## Configuration
 
-- Built an AI-powered document Q&A API that extracts text from PDFs, chunks documents, creates HuggingFace embeddings, and stores them in a FAISS vector index.
-- Added FastAPI endpoints for uploading documents, querying semantically similar chunks, returning source snippets, and running the app locally with Docker.
+| Environment Variable | Default | Description |
+| --- | --- | --- |
+| `EMBEDDING_MODEL` | `sentence-transformers/all-MiniLM-L6-v2` | HuggingFace embedding model |
+| `DATA_DIR` | `data` | Base directory for uploads and index |
+| `MIN_RELEVANCE_SCORE` | `0.30` | Minimum similarity score (0–1) to include in results |
+
+## Design Decisions
+
+- **No LLM generation**: The system returns retrieved chunks directly rather than passing them through an LLM. This keeps the project dependency-light (no API keys required) and focuses on retrieval quality, which is the foundation of any RAG system.
+- **Score threshold**: Results below 0.30 relevance are filtered to avoid returning irrelevant content for off-topic queries.
+- **Flat index**: `IndexFlatL2` provides exact nearest-neighbor search. For the current corpus size (~130 chunks), brute-force search is sub-5ms. For larger corpora, switching to `IndexIVFFlat` or `IndexHNSWFlat` would give sub-linear search time.
+- **Configurable model**: The embedding model is set via environment variable so different models can be benchmarked without code changes.

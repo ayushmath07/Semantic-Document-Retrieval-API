@@ -1,0 +1,35 @@
+Operating Systems: Process Management, Memory, and Concurrency
+
+An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for application programs. The OS acts as an intermediary between users and the hardware, handling resource allocation, process management, memory management, file system management, and I/O operations.
+
+Process Management
+
+A process is a program in execution. Each process has its own address space, program counter, registers, and stack. The operating system manages processes through creation, scheduling, synchronization, and termination. A process can be in one of several states: new, ready, running, waiting, or terminated.
+
+Process scheduling determines which process runs on the CPU at any given time. Common scheduling algorithms include First-Come-First-Served (FCFS), Shortest Job First (SJF), Priority Scheduling, and Round Robin. Round Robin assigns each process a fixed time quantum and cycles through the ready queue, providing fair CPU time to all processes.
+
+Context switching is the process of saving the state of the currently running process and restoring the state of the next process to be executed. Context switches have overhead due to saving and restoring registers, memory maps, and other process state information.
+
+Threads and Concurrency
+
+A thread is the smallest unit of execution within a process. Multiple threads within a process share the same address space and resources but have their own program counter, stack, and registers. Multithreading allows a process to perform multiple tasks concurrently.
+
+Concurrency introduces challenges such as race conditions, deadlocks, and starvation. Race conditions occur when multiple threads access shared data simultaneously, and the final result depends on the order of execution. Synchronization mechanisms like mutexes, semaphores, and monitors are used to coordinate access to shared resources.
+
+Deadlock occurs when two or more processes are waiting for each other to release resources, creating a circular dependency. The four necessary conditions for deadlock are mutual exclusion, hold and wait, no preemption, and circular wait. Deadlock can be prevented by breaking one of these conditions, detected using resource allocation graphs, or avoided using algorithms like the Banker's algorithm.
+
+Memory Management
+
+Memory management involves allocating and deallocating memory for processes. Virtual memory allows processes to use more memory than is physically available by mapping virtual addresses to physical addresses using page tables. When a process accesses a page that is not in physical memory, a page fault occurs, and the operating system loads the page from disk.
+
+Page replacement algorithms determine which page to evict when physical memory is full. Common algorithms include FIFO (First In, First Out), LRU (Least Recently Used), and Optimal (evict the page that will not be used for the longest time). The LRU algorithm is widely used in practice because it provides good performance by evicting the least recently accessed page.
+
+File Systems
+
+A file system organizes and stores data on storage devices. Common file systems include ext4 (Linux), NTFS (Windows), and APFS (macOS). File systems manage disk space allocation, directory structures, file metadata, and access permissions.
+
+The inode-based file system (used in ext4) stores file metadata in inodes, including file size, permissions, timestamps, and pointers to data blocks. Directories are special files that map filenames to inode numbers. Hard links create multiple directory entries pointing to the same inode, while symbolic links are special files that contain a path to another file.
+
+I/O Management
+
+The operating system manages input/output operations between the CPU and peripheral devices. I/O can be performed using programmed I/O (CPU polls the device), interrupt-driven I/O (device interrupts the CPU when ready), or Direct Memory Access (DMA, which allows the device to transfer data directly to memory without CPU involvement). Modern operating systems use a combination of these techniques to optimize I/O performance.

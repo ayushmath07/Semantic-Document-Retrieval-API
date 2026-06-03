@@ -1,0 +1,33 @@
+Computer Networks: Protocols, Architecture, and Security
+
+A computer network is a collection of interconnected computing devices that exchange data and share resources. Networks range from small local area networks (LANs) connecting devices within a building to wide area networks (WANs) spanning cities, countries, or the entire globe via the internet.
+
+The OSI Model
+
+The Open Systems Interconnection (OSI) model divides network communication into seven layers. The Physical layer handles the transmission of raw bits over a physical medium. The Data Link layer provides node-to-node data transfer and error detection using MAC addresses. The Network layer handles routing and forwarding using IP addresses. The Transport layer provides end-to-end communication using TCP or UDP. The Session layer manages sessions between applications. The Presentation layer handles data encryption and formatting. The Application layer provides network services to end-user applications.
+
+TCP/IP Protocol Suite
+
+The TCP/IP model is the practical implementation used on the internet. TCP (Transmission Control Protocol) is a connection-oriented protocol that ensures reliable, ordered delivery of data. It uses a three-way handshake (SYN, SYN-ACK, ACK) to establish connections, sequence numbers for ordering, acknowledgments for reliability, and flow control using sliding windows.
+
+UDP (User Datagram Protocol) is a connectionless protocol that provides fast, best-effort delivery without guarantees of reliability or ordering. UDP is used for applications where speed is more important than reliability, such as video streaming, online gaming, and DNS lookups.
+
+HTTP and HTTPS
+
+HTTP (HyperText Transfer Protocol) is the foundation of data communication on the World Wide Web. HTTP is a request-response protocol where clients send requests to servers and receive responses. Common HTTP methods include GET (retrieve data), POST (submit data), PUT (update data), and DELETE (remove data). HTTP status codes indicate the result of a request, such as 200 OK, 404 Not Found, and 500 Internal Server Error.
+
+HTTPS is the secure version of HTTP that uses TLS (Transport Layer Security) to encrypt communication between the client and server. TLS uses asymmetric encryption for key exchange and symmetric encryption for data transfer.
+
+REST APIs
+
+RESTful APIs (Representational State Transfer) are a popular architectural style for building web services. REST APIs use standard HTTP methods and follow principles including statelessness, uniform interface, and resource-based URLs. Each resource is identified by a URL, and operations on resources correspond to HTTP methods. REST APIs typically use JSON for data exchange.
+
+DNS
+
+The Domain Name System (DNS) translates human-readable domain names like www.example.com into IP addresses. DNS uses a hierarchical, distributed database system. When a client queries a domain name, the request passes through recursive resolvers, root name servers, TLD name servers, and authoritative name servers to resolve the IP address.
+
+Network Security
+
+Network security involves protecting the network infrastructure and data from unauthorized access, misuse, and attacks. Common security measures include firewalls (filtering network traffic based on rules), intrusion detection systems (monitoring for malicious activity), VPNs (creating encrypted tunnels for secure remote access), and SSL/TLS certificates (authenticating servers and encrypting traffic).
+
+Common network attacks include DDoS (Distributed Denial of Service), man-in-the-middle attacks, SQL injection, cross-site scripting (XSS), and phishing. Understanding these attack vectors is essential for building secure networked applications.

@@ -1,0 +1,202 @@
+[
+  {
+    "query": "What is supervised learning?",
+    "relevant_sources": ["machine_learning.txt"],
+    "relevant_keywords": ["supervised", "labeled dataset", "training example"]
+  },
+  {
+    "query": "Explain the difference between overfitting and underfitting",
+    "relevant_sources": ["machine_learning.txt"],
+    "relevant_keywords": ["overfitting", "underfitting", "regularization"]
+  },
+  {
+    "query": "What is K-means clustering?",
+    "relevant_sources": ["machine_learning.txt"],
+    "relevant_keywords": ["K-means", "clustering", "centroid"]
+  },
+  {
+    "query": "How does cross-validation work?",
+    "relevant_sources": ["machine_learning.txt"],
+    "relevant_keywords": ["cross-validation", "fold", "K-fold"]
+  },
+  {
+    "query": "What are convolutional neural networks used for?",
+    "relevant_sources": ["deep_learning.txt"],
+    "relevant_keywords": ["CNN", "convolutional", "image"]
+  },
+  {
+    "query": "Explain the transformer architecture",
+    "relevant_sources": ["deep_learning.txt"],
+    "relevant_keywords": ["transformer", "attention", "self-attention"]
+  },
+  {
+    "query": "What is the vanishing gradient problem?",
+    "relevant_sources": ["deep_learning.txt"],
+    "relevant_keywords": ["vanishing gradient", "LSTM", "RNN"]
+  },
+  {
+    "query": "What is transfer learning?",
+    "relevant_sources": ["deep_learning.txt"],
+    "relevant_keywords": ["transfer learning", "pre-trained", "fine-tuned"]
+  },
+  {
+    "query": "How does tokenization work in NLP?",
+    "relevant_sources": ["natural_language_processing.txt"],
+    "relevant_keywords": ["tokenization", "tokens", "subword"]
+  },
+  {
+    "query": "What is retrieval augmented generation?",
+    "relevant_sources": ["natural_language_processing.txt"],
+    "relevant_keywords": ["RAG", "retrieval", "generation", "knowledge base"]
+  },
+  {
+    "query": "Explain word embeddings and Word2Vec",
+    "relevant_sources": ["natural_language_processing.txt"],
+    "relevant_keywords": ["Word2Vec", "embedding", "vector"]
+  },
+  {
+    "query": "What is sentiment analysis?",
+    "relevant_sources": ["natural_language_processing.txt"],
+    "relevant_keywords": ["sentiment", "positive", "negative"]
+  },
+  {
+    "query": "Explain ACID properties in databases",
+    "relevant_sources": ["databases.txt"],
+    "relevant_keywords": ["ACID", "atomicity", "consistency", "isolation", "durability"]
+  },
+  {
+    "query": "What is a vector database?",
+    "relevant_sources": ["databases.txt"],
+    "relevant_keywords": ["vector database", "embeddings", "FAISS", "similarity search"]
+  },
+  {
+    "query": "Explain database normalization",
+    "relevant_sources": ["databases.txt"],
+    "relevant_keywords": ["normalization", "normal form", "redundancy"]
+  },
+  {
+    "query": "What is the OSI model?",
+    "relevant_sources": ["computer_networks.txt"],
+    "relevant_keywords": ["OSI", "seven layers", "network layer"]
+  },
+  {
+    "query": "How does TCP differ from UDP?",
+    "relevant_sources": ["computer_networks.txt"],
+    "relevant_keywords": ["TCP", "UDP", "connection-oriented", "connectionless"]
+  },
+  {
+    "query": "What is a REST API?",
+    "relevant_sources": ["computer_networks.txt", "web_development.txt"],
+    "relevant_keywords": ["REST", "HTTP methods", "resource"]
+  },
+  {
+    "query": "Explain process scheduling algorithms",
+    "relevant_sources": ["operating_systems.txt"],
+    "relevant_keywords": ["scheduling", "round robin", "FCFS"]
+  },
+  {
+    "query": "What is a deadlock?",
+    "relevant_sources": ["operating_systems.txt"],
+    "relevant_keywords": ["deadlock", "circular wait", "mutual exclusion"]
+  },
+  {
+    "query": "How does virtual memory work?",
+    "relevant_sources": ["operating_systems.txt"],
+    "relevant_keywords": ["virtual memory", "page fault", "page table"]
+  },
+  {
+    "query": "What is the time complexity of binary search trees?",
+    "relevant_sources": ["data_structures.txt"],
+    "relevant_keywords": ["binary search tree", "O(log n)", "balanced"]
+  },
+  {
+    "query": "Explain hash table collision resolution",
+    "relevant_sources": ["data_structures.txt"],
+    "relevant_keywords": ["hash table", "collision", "chaining", "open addressing"]
+  },
+  {
+    "query": "What is breadth-first search?",
+    "relevant_sources": ["data_structures.txt"],
+    "relevant_keywords": ["BFS", "breadth-first", "queue", "shortest path"]
+  },
+  {
+    "query": "What is SQL injection?",
+    "relevant_sources": ["cybersecurity.txt"],
+    "relevant_keywords": ["SQL injection", "parameterized", "input validation"]
+  },
+  {
+    "query": "How does JWT authentication work?",
+    "relevant_sources": ["cybersecurity.txt", "web_development.txt"],
+    "relevant_keywords": ["JWT", "token", "header", "payload", "signature"]
+  },
+  {
+    "query": "Explain symmetric and asymmetric encryption",
+    "relevant_sources": ["cybersecurity.txt"],
+    "relevant_keywords": ["symmetric", "asymmetric", "AES", "RSA"]
+  },
+  {
+    "query": "What is continuous integration?",
+    "relevant_sources": ["devops.txt"],
+    "relevant_keywords": ["continuous integration", "CI", "automated", "testing"]
+  },
+  {
+    "query": "Explain Docker containers vs virtual machines",
+    "relevant_sources": ["docker_containerization.txt"],
+    "relevant_keywords": ["container", "virtual machine", "kernel", "lightweight"]
+  },
+  {
+    "query": "What is a Dockerfile?",
+    "relevant_sources": ["docker_containerization.txt"],
+    "relevant_keywords": ["Dockerfile", "FROM", "CMD", "image"]
+  },
+  {
+    "query": "How does Docker Compose work?",
+    "relevant_sources": ["docker_containerization.txt", "devops.txt"],
+    "relevant_keywords": ["Docker Compose", "multi-container", "YAML"]
+  },
+  {
+    "query": "What is Kubernetes?",
+    "relevant_sources": ["devops.txt"],
+    "relevant_keywords": ["Kubernetes", "K8s", "pods", "orchestration"]
+  },
+  {
+    "query": "Explain horizontal vs vertical scaling",
+    "relevant_sources": ["system_design.txt"],
+    "relevant_keywords": ["horizontal", "vertical", "scaling", "load balancer"]
+  },
+  {
+    "query": "What is caching and how does Redis work?",
+    "relevant_sources": ["system_design.txt"],
+    "relevant_keywords": ["caching", "Redis", "in-memory"]
+  },
+  {
+    "query": "Explain microservices architecture",
+    "relevant_sources": ["system_design.txt"],
+    "relevant_keywords": ["microservices", "independent services", "API gateway"]
+  },
+  {
+    "query": "What is FastAPI and why is it used?",
+    "relevant_sources": ["web_development.txt"],
+    "relevant_keywords": ["FastAPI", "Python", "asynchronous", "Pydantic"]
+  },
+  {
+    "query": "How does Git branching work?",
+    "relevant_sources": ["git_version_control.txt"],
+    "relevant_keywords": ["branch", "merge", "feature branch"]
+  },
+  {
+    "query": "What is a pull request?",
+    "relevant_sources": ["git_version_control.txt"],
+    "relevant_keywords": ["pull request", "code review", "merge"]
+  },
+  {
+    "query": "Explain the difference between rebasing and merging",
+    "relevant_sources": ["git_version_control.txt"],
+    "relevant_keywords": ["rebase", "merge", "linear history"]
+  },
+  {
+    "query": "What is rate limiting in system design?",
+    "relevant_sources": ["system_design.txt"],
+    "relevant_keywords": ["rate limiting", "token bucket", "API gateway"]
+  }
+]
