@@ -6,7 +6,8 @@ Upload PDF, TXT, or Markdown documents and query them with natural language. The
 
 ## Architecture
 
-<img width="2822" height="1472" alt="Gemini_Generated_Image_z2nb2ez2nb2ez2nb" src="https://github.com/user-attachments/assets/30ea86b0-ad9a-408b-8aa4-616744535e33" />
+<img width="857" height="447" alt="image" src="https://github.com/user-attachments/assets/1c24d0ec-fe72-4587-becb-cfda3696d00b" />
+
 
 ### Pipeline Details
 
