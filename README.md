@@ -6,25 +6,7 @@ Upload PDF, TXT, or Markdown documents and query them with natural language. The
 
 ## Architecture
 
-```
-┌─────────────┐     ┌──────────────┐     ┌───────────────────┐     ┌────────────────┐
-│  Upload API  │────▶│ Text Extract │────▶│ Recursive Chunker │────▶│  HuggingFace   │
-│  POST /upload│     │ pypdf / read │     │ 800 char / 120    │     │ MiniLM (384-d) │
-└─────────────┘     └──────────────┘     │ overlap           │     └───────┬────────┘
-                                         └───────────────────┘             │
-                                                                           ▼
-┌─────────────┐     ┌──────────────┐     ┌───────────────────┐     ┌────────────────┐
-│  Query API   │────▶│ Embed Query  │────▶│   FAISS Search    │────▶│ Score Filter   │
-│  POST /query │     │ same model   │     │ IndexFlatL2       │     │ threshold 0.30 │
-└─────────────┘     └──────────────┘     └───────────────────┘     └───────┬────────┘
-                                                                           │
-                                                                           ▼
-                                                                    ┌────────────────┐
-                                                                    │  JSON Response  │
-                                                                    │ answer + sources│
-                                                                    │ + latency_ms    │
-                                                                    └────────────────┘
-```
+<img width="2822" height="1472" alt="Gemini_Generated_Image_z2nb2ez2nb2ez2nb" src="https://github.com/user-attachments/assets/30ea86b0-ad9a-408b-8aa4-616744535e33" />
 
 ### Pipeline Details
 
