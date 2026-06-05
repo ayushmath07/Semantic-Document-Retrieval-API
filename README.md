@@ -6,7 +6,8 @@ Upload PDF, TXT, or Markdown documents and query them with natural language. The
 
 ## Architecture
 
-<img width="857" height="447" alt="image" src="https://github.com/user-attachments/assets/1c24d0ec-fe72-4587-becb-cfda3696d00b" />
+<img width="1106" height="571" alt="image" src="https://github.com/user-attachments/assets/63605e60-44d3-4ba3-89a4-94205c584dcf" />
+
 
 
 ### Pipeline Details
