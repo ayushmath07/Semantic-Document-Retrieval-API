@@ -1,0 +1,10 @@
+{
+  "dataset": "scifact",
+  "documents": 5183,
+  "chunks": 17243,
+  "characters": 7776611,
+  "cdf_sample_queries": 100,
+  "cdf_scores_per_retriever": 1724300,
+  "vocabulary_terms": 35954,
+  "total_terms": 1297917
+}
