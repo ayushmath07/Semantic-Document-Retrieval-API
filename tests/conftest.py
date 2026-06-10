@@ -12,6 +12,9 @@ def client(tmp_path, monkeypatch):
 
     monkeypatch.setattr(retriever, "UPLOAD_DIR", upload_dir)
     monkeypatch.setattr(retriever, "INDEX_DIR", index_dir)
+    monkeypatch.setattr(retriever, "BM25_INDEX_PATH", index_dir / "bm25_index.pkl")
+    monkeypatch.setattr(retriever, "DOC_LOOKUP_PATH", index_dir / "doc_lookup.pkl")
+    monkeypatch.setattr(retriever, "CORPUS_LM_PATH", index_dir / "corpus_lm.pkl")
     monkeypatch.setattr(main, "UPLOAD_DIR", upload_dir)
 
     main.store = retriever.DocumentStore()

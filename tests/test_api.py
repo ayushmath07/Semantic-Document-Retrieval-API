@@ -12,7 +12,7 @@ def test_upload_and_query_text_document(client):
         store.documents.add(file_path.name)
         return {"filename": file_path.name, "chunks": 1, "characters": 84}
 
-    def fake_answer(question, top_k):
+    def fake_answer(question, top_k, mode):
         return {
             "answer": "[notes.txt] Semantic search finds similar text chunks.",
             "sources": [
@@ -24,6 +24,7 @@ def test_upload_and_query_text_document(client):
                 }
             ],
             "retrieval_latency_ms": 1.23,
+            "telemetry": {"mode": mode},
         }
 
     store.add_file = fake_add_file
@@ -43,13 +44,44 @@ def test_upload_and_query_text_document(client):
     assert upload.status_code == 200
     assert upload.json()["chunks"] >= 1
 
-    query = client.post("/query", json={"question": "What is semantic search?", "top_k": 2})
+    query = client.post(
+        "/query",
+        json={"question": "What is semantic search?", "top_k": 2, "mode": "hybrid_fixed"},
+    )
 
     assert query.status_code == 200
     data = query.json()
     assert "Semantic search" in data["answer"]
     assert data["sources"][0]["source"] == "notes.txt"
     assert "retrieval_latency_ms" in data
+    assert data["telemetry"]["mode"] == "hybrid_fixed"
+
+
+def test_modes_endpoint_lists_all_modes(client):
+    response = client.get("/modes")
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["default"] == "hybrid_calibrated_rerank"
+    assert set(data["modes"]) == {
+        "dense",
+        "sparse",
+        "rrf",
+        "hybrid_fixed",
+        "hybrid_calibrated",
+        "hybrid_fixed_rerank",
+        "hybrid_calibrated_rerank",
+    }
+
+
+def test_query_rejects_unknown_mode(client):
+    response = client.post(
+        "/query",
+        json={"question": "What is AI?", "top_k": 3, "mode": "unknown"},
+    )
+
+    assert response.status_code == 400
+    assert "unknown mode" in response.json()["detail"].lower()
 
 
 def test_upload_rejects_unsupported_file(client):
