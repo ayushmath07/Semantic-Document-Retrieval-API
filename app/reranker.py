@@ -54,7 +54,7 @@ class CrossEncoderReranker:
             scores = scores.tolist()
 
         # Attach scores and sort descending
-        for candidate, score in zip(candidates, scores):
+        for candidate, score in zip(candidates, scores, strict=True):
             candidate["cross_encoder_score"] = float(score)
 
         reranked = sorted(candidates, key=lambda x: x["cross_encoder_score"], reverse=True)

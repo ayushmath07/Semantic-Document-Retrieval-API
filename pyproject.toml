@@ -1,0 +1,42 @@
+[project]
+name = "semantic-document-retrieval-api"
+version = "1.0.0"
+description = "Research-grade hybrid retrieval API with BM25, FAISS, CDF calibration, entropy-weighted fusion, and cross-encoder reranking"
+requires-python = ">=3.11"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "N",    # pep8-naming
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "S",    # flake8-bandit (security)
+    "T20",  # flake8-print
+    "SIM",  # flake8-simplify
+]
+ignore = [
+    "S301",   # pickle usage (necessary for FAISS/BM25 index persistence)
+    "S311",   # pseudo-random generators (used for reproducible evaluation, not security)
+    "T201",   # print statements (used in CLI scripts)
+    "E501",   # line length (handled by formatter)
+    "B008",   # function call in default argument (FastAPI pattern: File(...), Field(...))
+]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*" = ["T201"]   # print is expected in CLI scripts
+"tests/*" = ["S101"]     # assert is expected in tests
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"

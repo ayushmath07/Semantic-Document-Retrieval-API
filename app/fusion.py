@@ -155,7 +155,7 @@ def linear_fuse(
     fused_scores = alpha * cal_sparse + (1 - alpha) * cal_dense
 
     results = []
-    for (key, data), score in zip(merged.items(), fused_scores):
+    for (_key, data), score in zip(merged.items(), fused_scores, strict=True):
         results.append(
             {
                 "source": data["source"],
@@ -228,7 +228,7 @@ def entropy_fuse(
     fused_scores = alpha * cal_sparse + (1 - alpha) * cal_dense
 
     results = []
-    for (key, data), score in zip(merged.items(), fused_scores):
+    for (_key, data), score in zip(merged.items(), fused_scores, strict=True):
         results.append(
             {
                 "source": data["source"],

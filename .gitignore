@@ -15,6 +15,9 @@ env/
 # FAISS Index (rebuild via scripts/build_index.py)
 data/index/
 
+# Benchmark datasets (download separately)
+data/scifact/
+
 # HuggingFace model cache
 .cache/
 models/
@@ -36,3 +39,6 @@ Thumbs.db
 .pytest_cache/
 htmlcov/
 .coverage
+
+# Ruff
+.ruff_cache/

@@ -31,8 +31,7 @@ from app.datasets import (  # noqa: E402
     load_scifact_golden_set,
     scifact_available,
 )
-from app.retriever import DocumentStore, INDEX_DIR, chunk_text  # noqa: E402
-
+from app.retriever import INDEX_DIR, DocumentStore, chunk_text  # noqa: E402
 
 SUPPORTED = {".txt", ".md", ".pdf"}
 GOLDEN_SET_PATH = Path("eval/golden_set.json")
@@ -132,7 +131,9 @@ def index_scifact_documents(store: DocumentStore) -> dict[str, Any]:
     }
 
 
-def build_calibration_artifacts(store: DocumentStore, dataset: str, total_chunks: int) -> dict[str, Any]:
+def build_calibration_artifacts(
+    store: DocumentStore, dataset: str, total_chunks: int
+) -> dict[str, Any]:
     print("\nStep 2: Building corpus-level CDFs...")
 
     golden_queries = load_dataset_queries(dataset)
@@ -214,7 +215,9 @@ def main() -> None:
     print(f"  Chunks:           {metadata['chunks']}")
     print(f"  FAISS vectors:    {store.vector_store.index.ntotal}")
     print(f"  BM25 documents:   {len(store.bm25_index.tokenized_corpus)}")
-    print(f"  CDF samples:      {metadata['cdf_sample_queries']} queries x {metadata['chunks']} docs")
+    print(
+        f"  CDF samples:      {metadata['cdf_sample_queries']} queries x {metadata['chunks']} docs"
+    )
     print(f"  Vocabulary:       {metadata['vocabulary_terms']} terms")
     print(f"  Doc lookup:       {len(store.doc_lookup)} entries")
     print(f"  Metadata:         {INDEX_METADATA_PATH}")

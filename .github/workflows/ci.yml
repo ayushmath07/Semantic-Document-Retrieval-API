@@ -7,12 +7,34 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  lint:
+    name: Lint & Format
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Ruff lint
+        run: ruff check .
+
+      - name: Ruff format check
+        run: ruff format --check .
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -23,8 +45,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run linter
-        run: python -m py_compile app/main.py && python -m py_compile app/retriever.py
+      - name: Compile check
+        run: python -m py_compile app/main.py && python -m py_compile app/retriever.py && python -m py_compile app/calibration.py && python -m py_compile app/fusion.py
 
       - name: Run tests
         run: pytest tests/ -v --tb=short

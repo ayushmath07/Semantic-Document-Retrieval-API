@@ -1,11 +1,10 @@
-from pathlib import Path
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from pydantic import BaseModel, Field
 
 from app.retriever import RETRIEVAL_MODES, UPLOAD_DIR, DocumentStore
-
 
 store = DocumentStore()
 

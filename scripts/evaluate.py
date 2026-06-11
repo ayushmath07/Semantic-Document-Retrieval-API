@@ -35,7 +35,6 @@ from app.calibration import (  # noqa: E402
 from app.datasets import SCIFACT_DIR, load_scifact_golden_set, scifact_available  # noqa: E402
 from app.retriever import INDEX_DIR, RETRIEVAL_MODES, DocumentStore  # noqa: E402
 
-
 EVAL_FILE = Path("eval/golden_set.json")
 RESULTS_FILE = Path("eval/results.json")
 INDEX_METADATA_FILE = INDEX_DIR / "index_metadata.json"
@@ -146,7 +145,9 @@ def aggregate_mode(rows: list[dict[str, Any]]) -> dict[str, float]:
     for name in metric_names:
         values = [row["metrics"][name] for row in rows]
         summary[name] = clean_float(statistics.mean(values), 4)
-        summary[f"{name}_std"] = clean_float(statistics.stdev(values), 4) if len(values) > 1 else 0.0
+        summary[f"{name}_std"] = (
+            clean_float(statistics.stdev(values), 4) if len(values) > 1 else 0.0
+        )
 
     latencies = [row["latency_ms"] for row in rows]
     summary.update(
@@ -190,8 +191,7 @@ def entropy_debug_rows(
                 "query_id": item.get("query_id"),
                 "query": query,
                 "top_raw_bm25_scores": [
-                    clean_float(value, 4)
-                    for value in np.sort(sparse_scores)[::-1][:10].tolist()
+                    clean_float(value, 4) for value in np.sort(sparse_scores)[::-1][:10].tolist()
                 ],
                 "sparse_entropy_by_calibration": {
                     method: clean_float(
@@ -393,9 +393,7 @@ def evaluate(
         print(f"  Evaluating mode: {mode}")
         for item in golden_set:
             query = item["query"]
-            results, latency_ms, telemetry = store.search(
-                query, top_k=RETRIEVAL_DEPTH, mode=mode
-            )
+            results, latency_ms, telemetry = store.search(query, top_k=RETRIEVAL_DEPTH, mode=mode)
             unique_results = dedupe_results_by_source(results)
             total_relevant = relevant_totals[query]
             metrics = metric_bundle(unique_results, item, total_relevant)

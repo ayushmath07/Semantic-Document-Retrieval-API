@@ -13,6 +13,7 @@ Modes:
     hybrid_calibrated_rerank - hybrid_calibrated + cross-encoder reranking
 """
 
+import contextlib
 import os
 import pickle
 import time
@@ -30,7 +31,6 @@ from app.calibration import load_corpus_cdfs, load_corpus_lm
 from app.fusion import entropy_fuse, linear_fuse, rrf_fuse
 from app.reranker import CrossEncoderReranker
 from app.sparse_retriever import BM25Index
-
 
 BASE_DIR = Path(os.getenv("DATA_DIR", "data"))
 UPLOAD_DIR = BASE_DIR / "uploads"
@@ -84,14 +84,12 @@ class DocumentStore:
     def load(self) -> None:
         """Load all indices, CDFs, and lookup tables from disk."""
         if INDEX_DIR.exists():
-            try:
+            with contextlib.suppress(Exception):
                 self.vector_store = FAISS.load_local(
                     str(INDEX_DIR),
                     self.embeddings,
                     allow_dangerous_deserialization=True,
                 )
-            except Exception:
-                pass
 
         self.bm25_index.load(BM25_INDEX_PATH)
         self.documents = {str(m["source"]) for m in self.bm25_index.doc_metadata}
@@ -224,17 +222,18 @@ class DocumentStore:
         elif mode == "hybrid_fixed":
             sparse = self._search_sparse(query, top_k=CANDIDATE_K)
             dense = self._search_dense(query, top_k=CANDIDATE_K)
-            results, meta = linear_fuse(
-                sparse, dense, alpha=0.5, calibration="minmax", top_k=top_k
-            )
+            results, meta = linear_fuse(sparse, dense, alpha=0.5, calibration="minmax", top_k=top_k)
             telemetry.update(meta)
 
         elif mode == "hybrid_calibrated":
             sparse = self._search_sparse(query, top_k=CANDIDATE_K)
             dense = self._search_dense(query, top_k=CANDIDATE_K)
             results, meta = entropy_fuse(
-                sparse, dense, calibration="cdf",
-                corpus_cdfs=self.corpus_cdfs, top_k=top_k,
+                sparse,
+                dense,
+                calibration="cdf",
+                corpus_cdfs=self.corpus_cdfs,
+                top_k=top_k,
             )
             telemetry.update(meta)
 
@@ -242,7 +241,10 @@ class DocumentStore:
             sparse = self._search_sparse(query, top_k=CANDIDATE_K)
             dense = self._search_dense(query, top_k=CANDIDATE_K)
             fused, meta = linear_fuse(
-                sparse, dense, alpha=0.5, calibration="minmax",
+                sparse,
+                dense,
+                alpha=0.5,
+                calibration="minmax",
                 top_k=CANDIDATE_K,
             )
             telemetry.update(meta)
@@ -253,8 +255,11 @@ class DocumentStore:
             sparse = self._search_sparse(query, top_k=CANDIDATE_K)
             dense = self._search_dense(query, top_k=CANDIDATE_K)
             fused, meta = entropy_fuse(
-                sparse, dense, calibration="cdf",
-                corpus_cdfs=self.corpus_cdfs, top_k=CANDIDATE_K,
+                sparse,
+                dense,
+                calibration="cdf",
+                corpus_cdfs=self.corpus_cdfs,
+                top_k=CANDIDATE_K,
             )
             telemetry.update(meta)
             results = self.reranker.rerank(query, fused, top_k=top_k)
@@ -268,7 +273,9 @@ class DocumentStore:
 
         return results, round(latency_ms, 2), telemetry
 
-    def answer(self, query: str, top_k: int = 3, mode: str = "hybrid_calibrated_rerank") -> dict[str, Any]:
+    def answer(
+        self, query: str, top_k: int = 3, mode: str = "hybrid_calibrated_rerank"
+    ) -> dict[str, Any]:
         results, latency_ms, telemetry = self.search(query, top_k, mode)
 
         if not results:

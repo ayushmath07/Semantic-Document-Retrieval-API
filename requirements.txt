@@ -13,5 +13,7 @@ rank-bm25==0.2.2
 numpy>=1.24.0
 scipy>=1.10.0
 
+# Dev / Testing
 pytest==8.3.5
 httpx==0.28.1
+ruff>=0.11.0

@@ -21,7 +21,6 @@ from typing import Any
 import numpy as np
 from scipy import stats
 
-
 # ---------------------------------------------------------------------------
 # Score Calibration Methods
 # ---------------------------------------------------------------------------
@@ -180,9 +179,7 @@ def build_corpus_cdfs(
     return cdf_bm25, cdf_dense
 
 
-def save_corpus_cdfs(
-    cdf_bm25: np.ndarray, cdf_dense: np.ndarray, directory: Path
-) -> None:
+def save_corpus_cdfs(cdf_bm25: np.ndarray, cdf_dense: np.ndarray, directory: Path) -> None:
     """Save corpus-level CDFs to disk as .npy files."""
     directory.mkdir(parents=True, exist_ok=True)
     np.save(directory / "corpus_cdf_bm25.npy", cdf_bm25)
@@ -258,9 +255,7 @@ def nqc(top_k_scores: np.ndarray, corpus_mean_score: float) -> float:
     return float(np.std(scores) / abs(corpus_mean_score))
 
 
-def wig(
-    top_k_scores: np.ndarray, corpus_mean_score: float, query_len: int
-) -> float:
+def wig(top_k_scores: np.ndarray, corpus_mean_score: float, query_len: int) -> float:
     """Weighted Information Gain.
 
     Zhou and Croft (2007). "Query Performance Prediction in Web Search
@@ -295,9 +290,7 @@ def build_corpus_language_model(
     return freqs, total
 
 
-def save_corpus_lm(
-    term_freqs: Counter, total_terms: int, path: Path
-) -> None:
+def save_corpus_lm(term_freqs: Counter, total_terms: int, path: Path) -> None:
     """Save corpus language model to disk."""
     import pickle
 

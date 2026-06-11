@@ -6,7 +6,6 @@ import json
 from pathlib import Path
 from typing import Any
 
-
 SCIFACT_DIR = Path("data/scifact")
 
 
@@ -56,7 +55,7 @@ def load_scifact_qrels(data_dir: Path = SCIFACT_DIR, split: str = "test") -> dic
     qrels_path = data_dir / "qrels" / f"{split}.tsv"
     qrels: dict[str, list[str]] = {}
     with open(qrels_path, encoding="utf-8") as f:
-        header = next(f, None)
+        next(f, None)  # skip header
         for line in f:
             parts = line.strip().split("\t")
             if len(parts) != 3:
@@ -68,7 +67,9 @@ def load_scifact_qrels(data_dir: Path = SCIFACT_DIR, split: str = "test") -> dic
     return qrels
 
 
-def load_scifact_golden_set(data_dir: Path = SCIFACT_DIR, split: str = "test") -> list[dict[str, Any]]:
+def load_scifact_golden_set(
+    data_dir: Path = SCIFACT_DIR, split: str = "test"
+) -> list[dict[str, Any]]:
     """Return BEIR-style golden rows compatible with scripts/evaluate.py."""
     queries = load_scifact_queries(data_dir)
     qrels = load_scifact_qrels(data_dir, split=split)
